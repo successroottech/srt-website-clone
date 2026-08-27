@@ -17,6 +17,10 @@ import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
 import { FreeChatbot } from '@/components/FreeChatbot'
 import { HomepageLeadGate } from './HomepageLeadGate'
+import { GoogleAnalyticsPageView } from './GoogleAnalyticsPageView'
+
+const googleAdsID = 'AW-17697110474'
+const gaMeasurementID = 'G-GV2FP6C2HN'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -26,13 +30,16 @@ export default async function RootLayout({ children }: { children: React.ReactNo
       <head>
         <InitTheme />
         <link href="/srt-logo.png" rel="icon" type="image/png" />
-        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-17697110474" />
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsID}`} />
         <script
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'AW-17697110474');`,
+gtag('config', '${googleAdsID}');
+if (window.location.hostname === 'successroottech.com' || window.location.hostname === 'www.successroottech.com') {
+  gtag('config', '${gaMeasurementID}', { send_page_view: false });
+}`,
           }}
         />
       </head>
@@ -45,6 +52,7 @@ gtag('config', 'AW-17697110474');`,
           />
 
           <Header />
+          <GoogleAnalyticsPageView measurementID={gaMeasurementID} />
           {children}
           <HomepageLeadGate />
           <Footer />
