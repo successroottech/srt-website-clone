@@ -60,7 +60,7 @@ export default function PlacementTrainingPage() {
               <Link className="ai-button ai-button-gold" href="/it-courses-chennai/">
                 Choose a career course <ArrowRight size={18} />
               </Link>
-              <Link className="ai-button ai-button-ghost" href="/#placements">
+              <Link className="ai-button ai-button-ghost" href="/it-job-placement-training-chennai/">
                 View success stories
               </Link>
             </div>

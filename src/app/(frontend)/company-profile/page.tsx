@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { getAbsoluteURL } from '@/utilities/getURL'
 import Image from 'next/image'
 import Link from 'next/link'
 import {
@@ -178,7 +179,7 @@ const organizationSchema = {
   '@type': ['Organization', 'EmploymentAgency'],
   name: 'Success Root Technologies',
   url: 'https://successroottech.com/',
-  logo: 'https://srtv1.successroottech.com/srt-logo.png',
+  logo: getAbsoluteURL('/srt-logo.png'),
   description:
     'Chennai-based recruitment, staffing, IT training and HR solutions organization serving IT and non-IT hiring requirements.',
   email: 'contact@successroottech.com',

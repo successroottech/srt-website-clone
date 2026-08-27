@@ -3,12 +3,12 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { unstable_cache } from 'next/cache'
 import { featuredCourses } from '@/data/courses'
-import { getServerSideURL } from '@/utilities/getURL'
+import { getProductionURL } from '@/utilities/getURL'
 
 const getPagesSitemap = unstable_cache(
   async () => {
     const payload = await getPayload({ config })
-    const SITE_URL = getServerSideURL()
+    const SITE_URL = getProductionURL('/').replace(/\/$/, '')
 
     const results = await payload.find({
       collection: 'pages',

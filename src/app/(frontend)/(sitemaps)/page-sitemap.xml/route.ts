@@ -3,12 +3,12 @@ import { getServerSideSitemap } from 'next-sitemap'
 import { unstable_cache } from 'next/cache'
 import { getPayload } from 'payload'
 
-import { getServerSideURL } from '@/utilities/getURL'
+import { getProductionURL } from '@/utilities/getURL'
 
 const getLegacyPageSitemap = unstable_cache(
   async () => {
     const payload = await getPayload({ config })
-    const siteURL = getServerSideURL()
+    const siteURL = getProductionURL('/')
     const results = await payload.find({
       collection: 'pages',
       depth: 0,

@@ -8,7 +8,7 @@ const links = [
   ['Courses', '/it-courses-chennai/'],
   ['AI Workshop', '/ai-workshop/'],
   ['Software Development', '/software-development'],
-  ['Placements', '/#placements'],
+  ['Placements', '/it-job-placement-training-chennai/'],
   ['Insights', '/blog/'],
   ['Contact', '/contact-us/'],
 ]

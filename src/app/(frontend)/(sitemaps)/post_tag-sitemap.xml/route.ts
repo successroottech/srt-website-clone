@@ -2,11 +2,11 @@ import { getServerSideSitemap } from 'next-sitemap'
 import { unstable_cache } from 'next/cache'
 
 import legacyTags from '@/data/legacyTags.json'
-import { getServerSideURL } from '@/utilities/getURL'
+import { getProductionURL } from '@/utilities/getURL'
 
 const getLegacyTagSitemap = unstable_cache(
   async () => {
-    const siteURL = getServerSideURL()
+    const siteURL = getProductionURL('/').replace(/\/$/, '')
     const fallback = new Date().toISOString()
 
     return legacyTags.map((tag) => ({

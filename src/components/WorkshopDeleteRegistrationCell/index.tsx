@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react'
 
+import { getAbsoluteURL } from '@/utilities/getURL'
+
 type Props = {
   rowData?: {
     fullName?: string
@@ -16,7 +18,7 @@ export default function WorkshopDeleteRegistrationCell({ rowData }: Props) {
   const whatsappDigits = rowData?.whatsappNumber?.replace(/\D/g, '') || ''
   const whatsappNumber = whatsappDigits.length === 10 ? `91${whatsappDigits}` : whatsappDigits
   const feedbackMessage = encodeURIComponent(
-    `Hello ${rowData?.fullName || 'there'}, thank you for attending the SRT AI Workshop. Please share your feedback and course interest here: https://srtv1.successroottech.com/workshop-feedback/`,
+    `Hello ${rowData?.fullName || 'there'}, thank you for attending the SRT AI Workshop. Please share your feedback and course interest here: ${getAbsoluteURL('/workshop-feedback/')}`,
   )
 
   const deleteRegistration = async () => {

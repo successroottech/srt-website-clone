@@ -1,5 +1,7 @@
 import nodemailer from 'nodemailer'
 
+import { getAbsoluteURL, getServerSideURL } from '@/utilities/getURL'
+
 type WorkshopEmailRegistration = {
   email: string
   fullName: string
@@ -26,10 +28,7 @@ const escapeHTML = (value: string) =>
 const registrationID = (id: number | string) => `SRT-AI-${String(id).padStart(5, '0')}`
 
 export const workshopPaymentLink = (registration: WorkshopEmailRegistration) => {
-  const baseURL = (process.env.NEXT_PUBLIC_SERVER_URL || 'https://srtv1.successroottech.com').replace(
-    /\/$/,
-    '',
-  )
+  const baseURL = getServerSideURL()
   const query = new URLSearchParams({
     registration: registrationID(registration.id),
     token: registration.paymentUploadToken || '',
@@ -133,7 +132,7 @@ export async function sendWorkshopRegistrationEmail(registration: WorkshopEmailR
       <p style="margin:0;font-size:12px;line-height:1.6;color:#728293">
         This link is unique to your registration. Please do not forward it. For cancellation and
         refund information, review our
-        <a href="https://srtv1.successroottech.com/refund-and-cancellation-policy/" style="color:#315f87">refund policy</a>.
+        <a href="${getAbsoluteURL('/refund-and-cancellation-policy/')}" style="color:#315f87">refund policy</a>.
       </p>
     `,
     ),
@@ -180,7 +179,7 @@ export async function sendWorkshopPaymentReminder(registration: WorkshopEmailReg
       <p style="margin:0;font-size:12px;line-height:1.6;color:#728293">
         To stop payment reminders, reply to this email with the word “Stop”. For cancellation and
         refund information, review our
-        <a href="https://srtv1.successroottech.com/refund-and-cancellation-policy/" style="color:#315f87">refund policy</a>.
+        <a href="${getAbsoluteURL('/refund-and-cancellation-policy/')}" style="color:#315f87">refund policy</a>.
       </p>
     `,
     ),

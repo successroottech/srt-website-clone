@@ -18,7 +18,7 @@ export async function Footer() {
           <Link href="/it-courses-chennai/">Training & Courses</Link>
           <Link href="/company-profile/">Company Profile</Link>
           <Link href="/ai-workshop/">AI Workshop Enrollment</Link>
-          <Link href="/#placements">Placement Support</Link>
+          <Link href="/it-job-placement-training-chennai/">Placement Support</Link>
           <Link href="/software-development">Software Development</Link>
           <Link href="/blog/">AI Insights</Link>
           <Link href="/faq/">FAQs</Link>

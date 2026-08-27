@@ -3,6 +3,7 @@ import { randomBytes } from 'crypto'
 
 import { authenticated } from '@/access/authenticated'
 import { sendWorkshopPaymentConfirmedEmail } from '@/utilities/workshopEmail'
+import { getAbsoluteURL } from '@/utilities/getURL'
 
 const csvValue = (value: unknown) => {
   if (value === null || value === undefined) return ''
@@ -154,7 +155,7 @@ export const WorkshopRegistrations: CollectionConfig = {
           registration.paymentSubmittedAt,
           registration.paymentRemindersEnabled ? 'Yes' : 'No',
           registration.certificateShareToken
-            ? `https://srtv1.successroottech.com/certificate/${registration.certificateShareToken}/`
+            ? getAbsoluteURL(`/certificate/${registration.certificateShareToken}/`)
             : '',
           registration.leadStatus,
           registration.consentToContact ? 'Yes' : 'No',

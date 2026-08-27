@@ -2,12 +2,12 @@ import { getServerSideSitemap } from 'next-sitemap'
 import { getPayload } from 'payload'
 import config from '@payload-config'
 import { unstable_cache } from 'next/cache'
-import { getServerSideURL } from '@/utilities/getURL'
+import { getProductionURL } from '@/utilities/getURL'
 
 const getPostsSitemap = unstable_cache(
   async () => {
     const payload = await getPayload({ config })
-    const SITE_URL = getServerSideURL()
+    const SITE_URL = getProductionURL('/').replace(/\/$/, '')
 
     const results = await payload.find({
       collection: 'posts',
