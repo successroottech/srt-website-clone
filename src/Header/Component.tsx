@@ -5,12 +5,12 @@ import { Logo } from '@/components/Logo/Logo'
 
 const links = [
   ['Home', '/'],
+  ['About Us', '/about-us/'],
+  ['Services', '/services/'],
   ['Courses', '/it-courses-chennai/'],
-  ['AI Workshop', '/ai-workshop/'],
-  ['Software Development', '/software-development'],
   ['Placements', '/it-job-placement-training-chennai/'],
-  ['Insights', '/blog/'],
-  ['Contact', '/contact-us/'],
+  ['Blog', '/blog/'],
+  ['Contact Us', '/contact-us/'],
 ]
 
 export async function Header() {

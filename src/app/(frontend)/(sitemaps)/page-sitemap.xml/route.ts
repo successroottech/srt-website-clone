@@ -22,6 +22,7 @@ const getLegacyPageSitemap = unstable_cache(
     const fallback = new Date().toISOString()
     const pages = new Map<string, string>([
       ['/', fallback],
+      ['/services/', fallback],
       ['/software-development/', fallback],
       ['/faq/', fallback],
       ['/ai-workshop/', fallback],
