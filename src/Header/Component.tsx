@@ -7,6 +7,7 @@ const links = [
   ['Home', '/'],
   ['About Us', '/about-us/'],
   ['Services', '/services/'],
+  ['Software Development', '/software-development/'],
   ['Courses', '/it-courses-chennai/'],
   ['Placements', '/it-job-placement-training-chennai/'],
   ['Blog', '/blog/'],
