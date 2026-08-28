@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import { Logo } from '@/components/Logo/Logo'
+import { MobileNavigation } from './MobileNavigation'
 
 const links = [
   ['Home', '/'],
@@ -28,18 +29,7 @@ export async function Header() {
             </Link>
           ))}
         </nav>
-        <details className="mobile-nav">
-          <summary aria-label="Open navigation menu">
-            <span></span><span></span><span></span>
-          </summary>
-          <nav aria-label="Mobile navigation">
-            {links.map(([label, href]) => (
-              <Link href={href} key={href}>
-                {label}
-              </Link>
-            ))}
-          </nav>
-        </details>
+        <MobileNavigation links={links} />
         <a className="header-cta" href="https://wa.me/918939069135">Start a conversation</a>
       </div>
     </header>
