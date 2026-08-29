@@ -37,6 +37,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', '${googleAdsID}');
+gtag('config', '${googleAdsID}/RFpwCPf33ukcEMrz0fZB', {
+  phone_conversion_number: '+91 89390 69135'
+});
 if (window.location.hostname === 'successroottech.com' || window.location.hostname === 'www.successroottech.com') {
   gtag('config', '${gaMeasurementID}', { send_page_view: false });
 }`,
