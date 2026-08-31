@@ -6,10 +6,27 @@ import type { Post } from '@/payload-types'
 import { Media } from '@/components/Media'
 import { formatAuthors } from '@/utilities/formatAuthors'
 
+const getFirstDescriptionLine = (value: unknown): string => {
+  if (!value || typeof value !== 'object') return ''
+  const children = (value as { root?: { children?: unknown[] } }).root?.children
+  const first = Array.isArray(children) ? children[0] : undefined
+
+  const collectText = (node: unknown): string => {
+    if (!node || typeof node !== 'object') return ''
+    if (Array.isArray(node)) return node.map(collectText).join(' ')
+    const value = node as Record<string, unknown>
+    if (typeof value.text === 'string') return value.text
+    return Object.values(value).map(collectText).join(' ')
+  }
+
+  return collectText(first).replace(/\s+/g, ' ').trim()
+}
+
 export const PostHero: React.FC<{
   post: Post
 }> = ({ post }) => {
-  const { categories, excerpt, heroImage, populatedAuthors, publishedAt, title } = post
+  const { categories, content, excerpt, heroImage, populatedAuthors, publishedAt, title } = post
+  const displayTitle = title || getFirstDescriptionLine(content)
 
   const hasAuthors =
     populatedAuthors && populatedAuthors.length > 0 && formatAuthors(populatedAuthors) !== ''
@@ -38,7 +55,7 @@ export const PostHero: React.FC<{
             })}
           </div>
 
-          {title && <h1>{title}</h1>}
+          {displayTitle && <h1>{displayTitle}</h1>}
           {excerpt && <p className="post-detail-excerpt">{excerpt}</p>}
 
           <div className="post-detail-meta">

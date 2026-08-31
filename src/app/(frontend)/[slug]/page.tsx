@@ -63,6 +63,20 @@ type Args = {
   }>
 }
 
+function withoutFirstRichTextNode<T>(value: T): T {
+  if (!value || typeof value !== 'object') return value
+  const root = (value as { root?: { children?: unknown[] } }).root
+  if (!Array.isArray(root?.children) || root.children.length === 0) return value
+
+  return {
+    ...value,
+    root: {
+      ...root,
+      children: root.children.slice(1),
+    },
+  } as T
+}
+
 export default async function Page({ params: paramsPromise }: Args) {
   const { isEnabled: draft } = await draftMode()
   const { slug = 'home' } = await paramsPromise
@@ -134,7 +148,11 @@ export default async function Page({ params: paramsPromise }: Args) {
                 dangerouslySetInnerHTML={{ __html: post.legacyHTML }}
               />
             ) : post.content ? (
-              <RichText className="max-w-[48rem] mx-auto" data={post.content} enableGutter={false} />
+              <RichText
+                className="max-w-[48rem] mx-auto"
+                data={post.title ? post.content : withoutFirstRichTextNode(post.content)}
+                enableGutter={false}
+              />
             ) : null}
             {post.relatedPosts && post.relatedPosts.length > 0 && (
               <RelatedPosts

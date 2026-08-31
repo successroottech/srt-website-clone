@@ -24,6 +24,12 @@ const getRichTextPreview = (value: unknown): string => {
   return Object.values(node).map(getRichTextPreview).join(' ')
 }
 
+const getRichTextChildren = (value: unknown): unknown[] => {
+  if (!value || typeof value !== 'object') return []
+  const root = (value as { root?: { children?: unknown[] } }).root
+  return Array.isArray(root?.children) ? root.children : []
+}
+
 export const Card: React.FC<{
   alignItems?: 'center'
   className?: string
@@ -40,8 +46,11 @@ export const Card: React.FC<{
   const { description, image: metaImage } = meta || {}
 
   const hasCategories = categories && Array.isArray(categories) && categories.length > 0
-  const titleToUse = titleFromProps || title
-  const preview = excerpt || description || getRichTextPreview(content)
+  const contentChildren = getRichTextChildren(content)
+  const derivedTitle = getRichTextPreview(contentChildren[0]).replace(/\s+/g, ' ').trim()
+  const titleToUse = titleFromProps || title || derivedTitle
+  const bodyContent = title ? contentChildren : contentChildren.slice(1)
+  const preview = excerpt || description || getRichTextPreview(bodyContent)
   const sanitizedDescription = preview?.replace(/\s/g, ' ') // replace non-breaking space with white space
   const href = relationTo === 'posts' ? `/${slug}/` : `/${slug}/`
   const cardImage = heroImage || metaImage
