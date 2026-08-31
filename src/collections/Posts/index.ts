@@ -50,6 +50,12 @@ export const Posts: CollectionConfig<'posts'> = {
     },
   },
   admin: {
+    components: {
+      beforeList: ['@/components/SimplePostCreateButton'],
+      edit: {
+        beforeDocumentControls: ['@/components/SimplePostMode'],
+      },
+    },
     defaultColumns: ['title', 'slug', 'updatedAt'],
     livePreview: {
       url: ({ data, req }) =>

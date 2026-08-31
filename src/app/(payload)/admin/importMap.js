@@ -17,6 +17,8 @@ import { PreviewComponent as PreviewComponent_a8a977ebc872c5d5ea7ee689724c0860 }
 import { SlugField as SlugField_2b8867833a34864a02ddf429b0728a40 } from '@payloadcms/next/client'
 import { HorizontalRuleFeatureClient as HorizontalRuleFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { BlocksFeatureClient as BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
+import { default as default_21db46143ef9687d9981c75384e20bee } from '@/components/SimplePostCreateButton'
+import { default as default_7af37ca81d4d59a4c4b7eacdce6afdd4 } from '@/components/SimplePostMode'
 import { default as default_ff44dc87c75f3e75eaa548cc19692900 } from '@/components/WorkshopPaymentStatusCell'
 import { default as default_dbc5b8fb28ed56c52aa883b5e12bbe0a } from '@/components/WorkshopPaymentProofCell'
 import { default as default_f1f57f53f48db355a549f7a79e7942c5 } from '@/components/WorkshopCertificateCell'
@@ -59,6 +61,8 @@ export const importMap = {
   "@payloadcms/next/client#SlugField": SlugField_2b8867833a34864a02ddf429b0728a40,
   "@payloadcms/richtext-lexical/client#HorizontalRuleFeatureClient": HorizontalRuleFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/richtext-lexical/client#BlocksFeatureClient": BlocksFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
+  "@/components/SimplePostCreateButton#default": default_21db46143ef9687d9981c75384e20bee,
+  "@/components/SimplePostMode#default": default_7af37ca81d4d59a4c4b7eacdce6afdd4,
   "@/components/WorkshopPaymentStatusCell#default": default_ff44dc87c75f3e75eaa548cc19692900,
   "@/components/WorkshopPaymentProofCell#default": default_dbc5b8fb28ed56c52aa883b5e12bbe0a,
   "@/components/WorkshopCertificateCell#default": default_f1f57f53f48db355a549f7a79e7942c5,
