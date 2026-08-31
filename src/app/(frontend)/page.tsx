@@ -239,7 +239,7 @@ export default async function HomePage() {
           <div>
             <Users />
             <span>
-              <strong>100+</strong>
+              <strong>300+</strong>
               <b>Students placed</b>
               <small>Successful IT careers</small>
             </span>
@@ -615,7 +615,7 @@ export default async function HomePage() {
 
               <div className="trust-metric-grid">
                 <div>
-                  <strong>100+</strong>
+                  <strong>300+</strong>
                   <span>Students placed</span>
                 </div>
                 <div>
