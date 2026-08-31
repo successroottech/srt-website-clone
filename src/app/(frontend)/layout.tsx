@@ -29,7 +29,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html className={cn(GeistSans.variable, GeistMono.variable)} lang="en" suppressHydrationWarning>
       <head>
         <InitTheme />
-        <link href="/srt-logo.png" rel="icon" type="image/png" />
         <script async src={`https://www.googletagmanager.com/gtag/js?id=${googleAdsID}`} />
         <script
           dangerouslySetInnerHTML={{
@@ -74,6 +73,15 @@ export const metadata: Metadata = {
   description:
     'Technology training with placement support in Chennai, plus custom software development, AI automation, web applications, data platforms and cloud solutions.',
   metadataBase: new URL(getServerSideURL()),
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    shortcut: '/favicon.ico',
+    apple: [{ url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' }],
+  },
   robots: {
     index: true,
     follow: true,

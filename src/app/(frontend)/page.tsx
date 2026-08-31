@@ -161,6 +161,7 @@ export default async function HomePage() {
     '@id': `${siteURL}/#organization`,
     name: 'Success Root Technologies',
     url: siteURL,
+    logo: `${siteURL}/srt-logo.png`,
     slogan: 'Build. Automate. Lead the Future.',
     telephone: '+91-8939069135',
     email: 'contact@successroottech.com',
