@@ -7,9 +7,9 @@ const hiddenFieldIDs = ['field-title', 'field-excerpt', 'field-legacyHTML']
 export default function SimplePostMode() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
+    const normalizedPath = window.location.pathname.replace(/\/$/, '')
     const isSimpleCreate =
-      window.location.pathname.endsWith('/admin/collections/posts/create') &&
-      params.get('simple') === '1'
+      normalizedPath.endsWith('/admin/collections/posts/create') && params.get('simple') === '1'
 
     if (!isSimpleCreate) return
 
