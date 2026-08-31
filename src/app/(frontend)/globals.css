@@ -1622,9 +1622,17 @@
 }
 
 .placement-step-grid article {
-  min-height: 280px;
+  position: relative;
+  min-height: 215px;
   border-right: 1px solid #e1e7ef;
-  padding: 28px;
+  padding: 30px 28px 32px;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.placement-step-grid article:hover {
+  z-index: 1;
+  background: #f8fbfd;
+  transform: translateY(-2px);
 }
 
 .placement-step-grid article:last-child {
@@ -1632,23 +1640,33 @@
 }
 
 .placement-step-grid span {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border: 1px solid #f0c75e;
+  border-radius: 50%;
+  background: #fff8df;
   color: #b17f00;
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 11px;
+  font-weight: 750;
 }
 
 .placement-step-grid h3 {
-  margin-top: 70px;
+  margin: 28px 0 0;
   color: #112947;
-  font-size: 24px;
+  font-size: 25px;
   font-weight: 790;
+  letter-spacing: -.025em;
 }
 
 .placement-step-grid p {
-  margin-top: 11px;
+  max-width: 260px;
+  margin: 10px 0 0;
   color: #687b91;
-  font-size: 12px;
-  line-height: 1.7;
+  font-size: 13px;
+  line-height: 1.65;
 }
 
 .placement-support-detail {
@@ -1807,6 +1825,16 @@
   }
   .placement-step-grid article:last-child {
     border-bottom: 0;
+  }
+  .placement-step-grid article {
+    min-height: 0;
+    padding: 24px;
+  }
+  .placement-step-grid h3 {
+    margin-top: 18px;
+  }
+  .placement-step-grid p {
+    max-width: none;
   }
   .placement-support-cards article {
     min-height: 190px;
