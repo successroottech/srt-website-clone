@@ -9,7 +9,6 @@ import {
   MapPin,
   MonitorCheck,
   Phone,
-  ShieldCheck,
 } from 'lucide-react'
 import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon'
 import styles from './contact.module.css'
@@ -170,10 +169,6 @@ export default function ContactPage() {
                 <span><Code2 size={21} /></span>
                 <div><strong>Software development</strong><small>Discuss your business or project requirements</small></div>
               </div>
-            </div>
-            <div className={styles.safetyNote}>
-              <ShieldCheck size={22} />
-              <p><strong>Payment safety</strong><span>Share only your registration and transaction reference. SRT will never ask for your OTP, PIN, CVV or banking password.</span></p>
             </div>
           </div>
         </div>

@@ -2,14 +2,17 @@ import type { Metadata } from 'next'
 import {
   ArrowRight,
   BriefcaseBusiness,
+  Building2,
   CheckCircle2,
   GraduationCap,
   MapPin,
+  Medal,
   MessageCircle,
   Phone,
   SearchCheck,
-  Star,
+  Users,
 } from 'lucide-react'
+import { AnimatedNumber } from '@/components/AnimatedNumber'
 import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon'
 import Link from 'next/link'
 
@@ -116,26 +119,40 @@ export default function ITCoursesChennaiPage() {
         </div>
       </section>
 
-      <section className={styles.trustStrip} aria-label="SRT training highlights">
-        <div className="container">
-          <div>
-            <strong>300+</strong>
-            <span>Students placed</span>
-          </div>
-          <div>
-            <strong>20+</strong>
-            <span>Partner companies</span>
-          </div>
-          <div>
-            <strong>3+</strong>
-            <span>Years of excellence</span>
-          </div>
-          <div>
-            <strong>
-              4.8/5 <Star size={17} fill="currentColor" />
-            </strong>
-            <span>Google rating · 74 reviews</span>
-          </div>
+      <section className="ai-proof home-full-banner-proof" aria-label="SRT training highlights">
+        <div>
+          <Users />
+          <span>
+            <AnimatedNumber end={300} suffix="+" />
+            <b>Students placed</b>
+            <small>Successful IT careers</small>
+          </span>
+        </div>
+        <div>
+          <Building2 className="trust-icon-gold" />
+          <span>
+            <AnimatedNumber end={20} suffix="+" />
+            <b>Partner companies</b>
+            <small>Hiring our students</small>
+          </span>
+        </div>
+        <div>
+          <Medal />
+          <span>
+            <AnimatedNumber end={3} suffix="+" />
+            <b>Years of excellence</b>
+            <small>Trusted since 2022</small>
+          </span>
+        </div>
+        <div>
+          <span className="google-g" aria-hidden="true">G</span>
+          <span>
+            <AnimatedNumber decimals={1} end={4.8} suffix="/5" />
+            <b>
+              Google rating <span className="google-stars" aria-label="5 stars">★★★★★</span>
+            </b>
+            <small>Based on 74 reviews</small>
+          </span>
         </div>
       </section>
 
