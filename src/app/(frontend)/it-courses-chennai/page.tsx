@@ -119,7 +119,7 @@ export default function ITCoursesChennaiPage() {
       <section className={styles.trustStrip} aria-label="SRT training highlights">
         <div className="container">
           <div>
-            <strong>100+</strong>
+            <strong>300+</strong>
             <span>Students placed</span>
           </div>
           <div>
