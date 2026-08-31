@@ -27,6 +27,7 @@ import Link from 'next/link'
 import { getPayload } from 'payload'
 import { getServerSideURL } from '@/utilities/getURL'
 import { FAQList } from '@/components/FAQList'
+import { AnimatedNumber } from '@/components/AnimatedNumber'
 
 const programs = [
   {
@@ -239,7 +240,7 @@ export default async function HomePage() {
           <div>
             <Users />
             <span>
-              <strong>300+</strong>
+              <AnimatedNumber end={300} suffix="+" />
               <b>Students placed</b>
               <small>Successful IT careers</small>
             </span>
@@ -247,7 +248,7 @@ export default async function HomePage() {
           <div>
             <Building2 className="trust-icon-gold" />
             <span>
-              <strong>20+</strong>
+              <AnimatedNumber end={20} suffix="+" />
               <b>Partner companies</b>
               <small>Hiring our students</small>
             </span>
@@ -255,7 +256,7 @@ export default async function HomePage() {
           <div>
             <Medal />
             <span>
-              <strong>3+</strong>
+              <AnimatedNumber end={3} suffix="+" />
               <b>Years of excellence</b>
               <small>Trusted since 2022</small>
             </span>
@@ -265,7 +266,7 @@ export default async function HomePage() {
               G
             </span>
             <span>
-              <strong>4.8/5</strong>
+              <AnimatedNumber decimals={1} end={4.8} suffix="/5" />
               <b>
                 Google rating{' '}
                 <span className="google-stars" aria-label="5 stars">
@@ -615,15 +616,15 @@ export default async function HomePage() {
 
               <div className="trust-metric-grid">
                 <div>
-                  <strong>300+</strong>
+                  <AnimatedNumber end={300} suffix="+" />
                   <span>Students placed</span>
                 </div>
                 <div>
-                  <strong>20+</strong>
+                  <AnimatedNumber end={20} suffix="+" />
                   <span>Partner companies</span>
                 </div>
                 <div>
-                  <strong>3+</strong>
+                  <AnimatedNumber end={3} suffix="+" />
                   <span>Years of experience</span>
                 </div>
               </div>
