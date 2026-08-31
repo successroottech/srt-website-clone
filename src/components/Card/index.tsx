@@ -11,8 +11,18 @@ import { Media } from '@/components/Media'
 
 export type CardPostData = Pick<
   Post,
-  'slug' | 'categories' | 'excerpt' | 'heroImage' | 'meta' | 'title'
+  'slug' | 'categories' | 'content' | 'excerpt' | 'heroImage' | 'meta' | 'title'
 >
+
+const getRichTextPreview = (value: unknown): string => {
+  if (!value) return ''
+  if (Array.isArray(value)) return value.map(getRichTextPreview).join(' ')
+  if (typeof value !== 'object') return ''
+
+  const node = value as Record<string, unknown>
+  if (typeof node.text === 'string') return node.text
+  return Object.values(node).map(getRichTextPreview).join(' ')
+}
 
 export const Card: React.FC<{
   alignItems?: 'center'
@@ -26,12 +36,12 @@ export const Card: React.FC<{
   const [imageFailed, setImageFailed] = useState(false)
   const { className, doc, relationTo, showCategories, title: titleFromProps } = props
 
-  const { slug, categories, excerpt, heroImage, meta, title } = doc || {}
+  const { slug, categories, content, excerpt, heroImage, meta, title } = doc || {}
   const { description, image: metaImage } = meta || {}
 
   const hasCategories = categories && Array.isArray(categories) && categories.length > 0
   const titleToUse = titleFromProps || title
-  const preview = excerpt || description
+  const preview = excerpt || description || getRichTextPreview(content)
   const sanitizedDescription = preview?.replace(/\s/g, ' ') // replace non-breaking space with white space
   const href = relationTo === 'posts' ? `/${slug}/` : `/${slug}/`
   const cardImage = heroImage || metaImage
