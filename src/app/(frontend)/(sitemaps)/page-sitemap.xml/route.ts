@@ -38,6 +38,7 @@ const getLegacyPageSitemap = unstable_cache(
     results.docs.forEach(({ slug, updatedAt, originalURL }) => {
       if (
         !slug ||
+        slug === 'home-08' ||
         slug === 'about-success-root-it-training-chennai' ||
         originalURL?.includes('/courses/')
       ) return

@@ -78,7 +78,9 @@ const getPagesSitemap = unstable_cache(
       ? results.docs
           .filter(
             (page) =>
-              Boolean(page?.slug) && page.slug !== 'about-success-root-it-training-chennai',
+              Boolean(page?.slug) &&
+              page.slug !== 'home-08' &&
+              page.slug !== 'about-success-root-it-training-chennai',
           )
           .map((page) => {
             return {
