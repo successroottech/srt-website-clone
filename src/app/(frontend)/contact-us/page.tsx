@@ -1,5 +1,16 @@
 import type { Metadata } from 'next'
-import { Clock3, Mail, MapPin, Phone } from 'lucide-react'
+import {
+  BriefcaseBusiness,
+  CalendarCheck2,
+  Clock3,
+  Code2,
+  GraduationCap,
+  Mail,
+  MapPin,
+  MonitorCheck,
+  Phone,
+  ShieldCheck,
+} from 'lucide-react'
 import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon'
 import styles from './contact.module.css'
 
@@ -133,18 +144,37 @@ export default function ContactPage() {
             </a>
           </div>
           <div className={styles.help}>
-            <h2>How can we help?</h2>
-            <ul>
-              <li>Course fees, syllabus and upcoming batches</li>
-              <li>Classroom and online training guidance</li>
-              <li>Workshop registration or payment support</li>
-              <li>Placement-assistance enquiries</li>
-              <li>Software development requirements</li>
-            </ul>
-            <p>
-              For payment support, share only your registration and transaction reference. Never
-              share OTPs, PINs, CVVs or banking passwords.
+            <span className={styles.helpKicker}>PERSONAL GUIDANCE FROM SRT</span>
+            <h2>What can we help you with?</h2>
+            <p className={styles.helpIntro}>
+              Tell us what you need and our team will connect you with the right person.
             </p>
+            <div className={styles.helpList}>
+              <div className={styles.helpItem}>
+                <span><GraduationCap size={21} /></span>
+                <div><strong>Course guidance</strong><small>Fees, syllabus and upcoming batches</small></div>
+              </div>
+              <div className={styles.helpItem}>
+                <span><MonitorCheck size={21} /></span>
+                <div><strong>Training options</strong><small>Classroom and online learning support</small></div>
+              </div>
+              <div className={styles.helpItem}>
+                <span><CalendarCheck2 size={21} /></span>
+                <div><strong>Workshop support</strong><small>Registration, schedules and payments</small></div>
+              </div>
+              <div className={styles.helpItem}>
+                <span><BriefcaseBusiness size={21} /></span>
+                <div><strong>Placement assistance</strong><small>Career guidance and candidate enquiries</small></div>
+              </div>
+              <div className={styles.helpItem}>
+                <span><Code2 size={21} /></span>
+                <div><strong>Software development</strong><small>Discuss your business or project requirements</small></div>
+              </div>
+            </div>
+            <div className={styles.safetyNote}>
+              <ShieldCheck size={22} />
+              <p><strong>Payment safety</strong><span>Share only your registration and transaction reference. SRT will never ask for your OTP, PIN, CVV or banking password.</span></p>
+            </div>
           </div>
         </div>
       </section>
