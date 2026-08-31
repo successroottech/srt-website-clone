@@ -16,6 +16,16 @@ export const redirects: NextConfig['redirects'] = async () => {
 
   return [
     {
+      source: '/one-interview-rejection-should-improve-your-next-interview-1788196283561',
+      destination: '/one-interview-rejection-should-improve-your-next-interview/',
+      statusCode: 301,
+    },
+    {
+      source: '/one-interview-rejection-should-improve-your-next-interview-1788196283561/',
+      destination: '/one-interview-rejection-should-improve-your-next-interview/',
+      statusCode: 301,
+    },
+    {
       source: '/angular-development-1788196139824',
       destination: '/angular-development/',
       statusCode: 301,
