@@ -21,12 +21,9 @@ const slugify = (value: string) =>
     .replace(/^-+|-+$/g, '')
     .slice(0, 70)
 
-const toLexical = (description: string) => ({
+const toLexical = (lines: string[]) => ({
   root: {
-    children: description
-      .split(/\r?\n/)
-      .filter((line) => line.trim())
-      .map((line) => ({
+    children: lines.map((line) => ({
         children: [
           {
             detail: 0,
@@ -81,8 +78,29 @@ export async function POST(request: Request) {
   }
 
   const firstLine = description.split(/\r?\n/).find((line) => line.trim())?.trim() || 'SRT Blog Post'
-  const timestamp = Date.now()
-  const slug = `${slugify(firstLine) || 'srt-blog-post'}-${timestamp}`
+  const descriptionLines = description
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+  const bodyLines = descriptionLines.slice(1)
+  const baseSlug = slugify(firstLine) || 'srt-blog-post'
+  let slug = baseSlug
+  let suffix = 2
+
+  while (
+    (
+      await payload.find({
+        collection: 'posts',
+        depth: 0,
+        limit: 1,
+        overrideAccess: true,
+        where: { slug: { equals: slug } },
+      })
+    ).totalDocs > 0
+  ) {
+    slug = `${baseSlug}-${suffix}`
+    suffix += 1
+  }
   const tempDirectory = path.join(tmpdir(), 'srt-quick-posts')
   const tempFile = path.join(tempDirectory, `${randomUUID()}.${extension}`)
   let mediaID: number | string | undefined
@@ -104,10 +122,11 @@ export async function POST(request: Request) {
       collection: 'posts',
       data: {
         _status: 'published',
-        content: toLexical(description.trim()),
+        content: toLexical(bodyLines),
         heroImage: media.id,
         publishedAt: new Date().toISOString(),
         slug,
+        title: firstLine,
       },
       overrideAccess: false,
       user,
