@@ -42,6 +42,8 @@ export const Posts: CollectionConfig<'posts'> = {
     title: true,
     slug: true,
     categories: true,
+    excerpt: true,
+    heroImage: true,
     meta: {
       image: true,
       description: true,
@@ -77,9 +79,15 @@ export const Posts: CollectionConfig<'posts'> = {
         {
           fields: [
             {
-              name: 'heroImage',
-              type: 'upload',
-              relationTo: 'media',
+              name: 'excerpt',
+              type: 'textarea',
+              maxLength: 320,
+              admin: {
+                description:
+                  'Write a short, clear preview for the Blog page (recommended: 120–220 characters).',
+                rows: 3,
+              },
+              label: 'Short content',
             },
             {
               name: 'content',
@@ -96,8 +104,18 @@ export const Posts: CollectionConfig<'posts'> = {
                   ]
                 },
               }),
-              label: false,
+              label: 'Full blog content',
               required: false,
+            },
+            {
+              name: 'heroImage',
+              type: 'upload',
+              relationTo: 'media',
+              admin: {
+                description:
+                  'Drag and drop the blog image here. Recommended size: 1080 × 1080 px (square).',
+              },
+              label: 'Blog image (1080 × 1080)',
             },
             {
               name: 'legacyHTML',

@@ -22,6 +22,8 @@ export default async function BlogPage() {
       title: true,
       slug: true,
       categories: true,
+      excerpt: true,
+      heroImage: true,
       meta: true,
     },
   })

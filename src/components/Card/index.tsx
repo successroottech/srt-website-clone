@@ -9,7 +9,10 @@ import type { Post } from '@/payload-types'
 
 import { Media } from '@/components/Media'
 
-export type CardPostData = Pick<Post, 'slug' | 'categories' | 'meta' | 'title'>
+export type CardPostData = Pick<
+  Post,
+  'slug' | 'categories' | 'excerpt' | 'heroImage' | 'meta' | 'title'
+>
 
 export const Card: React.FC<{
   alignItems?: 'center'
@@ -23,14 +26,16 @@ export const Card: React.FC<{
   const [imageFailed, setImageFailed] = useState(false)
   const { className, doc, relationTo, showCategories, title: titleFromProps } = props
 
-  const { slug, categories, meta, title } = doc || {}
+  const { slug, categories, excerpt, heroImage, meta, title } = doc || {}
   const { description, image: metaImage } = meta || {}
 
   const hasCategories = categories && Array.isArray(categories) && categories.length > 0
   const titleToUse = titleFromProps || title
-  const sanitizedDescription = description?.replace(/\s/g, ' ') // replace non-breaking space with white space
+  const preview = excerpt || description
+  const sanitizedDescription = preview?.replace(/\s/g, ' ') // replace non-breaking space with white space
   const href = relationTo === 'posts' ? `/${slug}/` : `/${slug}/`
-  const hasImage = Boolean(metaImage && typeof metaImage !== 'string')
+  const cardImage = heroImage || metaImage
+  const hasImage = Boolean(cardImage && typeof cardImage !== 'string')
   const showImage = hasImage && !imageFailed
 
   return (
@@ -38,12 +43,12 @@ export const Card: React.FC<{
       className={cn('post-card', !showImage && 'post-card--text-only', className)}
       ref={card.ref}
     >
-      {showImage && typeof metaImage !== 'string' && (
+      {showImage && cardImage && typeof cardImage !== 'string' && (
         <div className="post-card-media">
           <Media
             imgClassName="post-card-image"
             onError={() => setImageFailed(true)}
-            resource={metaImage}
+            resource={cardImage}
             size="(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw"
           />
         </div>
@@ -80,9 +85,9 @@ export const Card: React.FC<{
             </h2>
           </div>
         )}
-        {description && <p className="post-card-description">{sanitizedDescription}</p>}
+        {preview && <p className="post-card-description">{sanitizedDescription}</p>}
         <Link className="post-card-link" href={href} aria-label={`Read ${titleToUse || 'post'}`}>
-          Read insight <ArrowUpRight aria-hidden="true" size={15} />
+          View more <ArrowUpRight aria-hidden="true" size={15} />
         </Link>
       </div>
     </article>

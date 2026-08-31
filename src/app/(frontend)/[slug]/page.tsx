@@ -117,7 +117,7 @@ export default async function Page({ params: paramsPromise }: Args) {
     }
 
     return (
-      <article className="pt-16 pb-16">
+      <article className="post-detail-page">
         <script
           dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
           type="application/ld+json"
@@ -126,7 +126,7 @@ export default async function Page({ params: paramsPromise }: Args) {
         <PayloadRedirects disableNotFound url={url} />
         {draft && <LivePreviewListener />}
         <PostHero post={post} />
-        <div className="flex flex-col items-center gap-4 pt-8">
+        <div className="post-detail-content flex flex-col items-center gap-4">
           <div className="container">
             {post.legacyHTML ? (
               <div

@@ -241,7 +241,10 @@ export interface Page {
 export interface Post {
   id: number;
   title: string;
-  heroImage?: (number | null) | Media;
+  /**
+   * Write a short, clear preview for the Blog page (recommended: 120–220 characters).
+   */
+  excerpt?: string | null;
   content?: {
     root: {
       type: string;
@@ -257,6 +260,10 @@ export interface Post {
     };
     [k: string]: unknown;
   } | null;
+  /**
+   * Drag and drop the blog image here. Recommended size: 1080 × 1080 px (square).
+   */
+  heroImage?: (number | null) | Media;
   /**
    * HTML imported from the previous WordPress website.
    */
@@ -1333,8 +1340,9 @@ export interface FormBlockSelect<T extends boolean = true> {
  */
 export interface PostsSelect<T extends boolean = true> {
   title?: T;
-  heroImage?: T;
+  excerpt?: T;
   content?: T;
+  heroImage?: T;
   legacyHTML?: T;
   relatedPosts?: T;
   categories?: T;
