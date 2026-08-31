@@ -241,7 +241,7 @@ export interface Page {
 export interface Post {
   id: number;
   /**
-   * Optional. If left blank, SRT will create a short title automatically from the description.
+   * Optional. Leave blank when you want the post to display without a title.
    */
   title?: string | null;
   /**

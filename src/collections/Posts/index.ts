@@ -27,16 +27,6 @@ import {
 } from '@payloadcms/plugin-seo/fields'
 import { slugField } from 'payload'
 
-const getLexicalText = (value: unknown): string => {
-  if (!value) return ''
-  if (Array.isArray(value)) return value.map(getLexicalText).join(' ')
-  if (typeof value !== 'object') return ''
-
-  const node = value as Record<string, unknown>
-  if (typeof node.text === 'string') return node.text
-  return Object.values(node).map(getLexicalText).join(' ')
-}
-
 export const Posts: CollectionConfig<'posts'> = {
   slug: 'posts',
   access: {
@@ -82,8 +72,7 @@ export const Posts: CollectionConfig<'posts'> = {
       name: 'title',
       type: 'text',
       admin: {
-        description:
-          'Optional. If left blank, SRT will create a short title automatically from the description.',
+        description: 'Optional. Leave blank when you want the post to display without a title.',
       },
       required: false,
     },
@@ -277,20 +266,6 @@ export const Posts: CollectionConfig<'posts'> = {
     slugField(),
   ],
   hooks: {
-    beforeValidate: [
-      ({ data }) => {
-        if (!data || (typeof data.title === 'string' && data.title.trim())) return data
-
-        const source =
-          (typeof data.excerpt === 'string' && data.excerpt.trim()) || getLexicalText(data.content)
-        const generatedTitle = source.replace(/\s+/g, ' ').trim().slice(0, 90)
-
-        return {
-          ...data,
-          title: generatedTitle || `SRT Blog Update ${new Date().toISOString().slice(0, 10)}`,
-        }
-      },
-    ],
     afterChange: [revalidatePost],
     afterRead: [populateAuthors],
     afterDelete: [revalidateDelete],

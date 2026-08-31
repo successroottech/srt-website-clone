@@ -38,7 +38,7 @@ export const PostHero: React.FC<{
             })}
           </div>
 
-          <h1>{title}</h1>
+          {title && <h1>{title}</h1>}
           {excerpt && <p className="post-detail-excerpt">{excerpt}</p>}
 
           <div className="post-detail-meta">
