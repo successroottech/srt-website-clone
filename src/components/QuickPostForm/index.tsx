@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, type ChangeEvent, type FormEvent } from 'react'
+import { useState, type ChangeEvent, type DragEvent, type FormEvent } from 'react'
 
 export function QuickPostForm() {
   const [description, setDescription] = useState('')
@@ -11,6 +11,15 @@ export function QuickPostForm() {
   const chooseImage = (event: ChangeEvent<HTMLInputElement>) => {
     setImage(event.target.files?.[0] || null)
     setMessage('')
+  }
+
+  const dropImage = (event: DragEvent<HTMLLabelElement>) => {
+    event.preventDefault()
+    const droppedImage = event.dataTransfer.files?.[0]
+    if (droppedImage) {
+      setImage(droppedImage)
+      setMessage('')
+    }
   }
 
   const submit = async (event: FormEvent) => {
@@ -27,7 +36,7 @@ export function QuickPostForm() {
     body.append('image', image)
 
     try {
-      const response = await fetch('/api/quick-post', { body, method: 'POST' })
+      const response = await fetch('/api/quick-post/', { body, method: 'POST' })
       const result = await response.json()
       if (!response.ok) throw new Error(result.message || 'Unable to save the post.')
 
@@ -65,7 +74,12 @@ export function QuickPostForm() {
             value={description}
           />
 
-          <label className="srt-quick-post-upload" htmlFor="quick-post-image">
+          <label
+            className="srt-quick-post-upload"
+            htmlFor="quick-post-image"
+            onDragOver={(event) => event.preventDefault()}
+            onDrop={dropImage}
+          >
             <strong>Blog image (1080 × 1080)</strong>
             <span>{image ? image.name : 'Click to choose or drag and drop a JPG, PNG or WebP image'}</span>
             <input
