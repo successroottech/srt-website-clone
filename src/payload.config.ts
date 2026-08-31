@@ -24,6 +24,17 @@ const dirname = path.dirname(filename)
 
 export default buildConfig({
   admin: {
+    meta: {
+      titleSuffix: ' | SRT Admin',
+      icons: {
+        icon: [
+          { url: '/favicon.svg?v=3', type: 'image/svg+xml' },
+          { url: '/favicon.ico?v=3', sizes: 'any' },
+        ],
+        shortcut: '/favicon.ico?v=3',
+        apple: '/apple-touch-icon.png?v=3',
+      },
+    },
     components: {
       // The `BeforeLogin` component renders a message that you see while logging into your admin panel.
       // Feel free to delete this at any time. Simply remove the line below.
