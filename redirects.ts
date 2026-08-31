@@ -16,6 +16,16 @@ export const redirects: NextConfig['redirects'] = async () => {
 
   return [
     {
+      source: '/angular-development-1788196139824',
+      destination: '/angular-development/',
+      statusCode: 301,
+    },
+    {
+      source: '/angular-development-1788196139824/',
+      destination: '/angular-development/',
+      statusCode: 301,
+    },
+    {
       source: '/home-08',
       destination: '/',
       statusCode: 301,
