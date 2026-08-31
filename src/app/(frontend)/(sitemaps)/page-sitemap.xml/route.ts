@@ -36,7 +36,11 @@ const getLegacyPageSitemap = unstable_cache(
     ])
 
     results.docs.forEach(({ slug, updatedAt, originalURL }) => {
-      if (!slug || originalURL?.includes('/courses/')) return
+      if (
+        !slug ||
+        slug === 'about-success-root-it-training-chennai' ||
+        originalURL?.includes('/courses/')
+      ) return
       const path = slug === 'home' ? '/' : `/${slug}/`
       pages.set(path, updatedAt || fallback)
     })
