@@ -5881,6 +5881,22 @@ body {
   gap: 12px;
 }
 
+.placement-home-banner {
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 15%);
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 18px 48px rgb(0 0 0 / 28%);
+}
+
+.placement-home-banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+}
+
 .candidate-story-card {
   position: relative;
   overflow: hidden;
@@ -7774,6 +7790,9 @@ body {
   }
   .placement-success-wall {
     padding: 34px;
+  }
+  .placement-home-banner {
+    border-radius: 12px;
   }
   .placement-story-heading {
     align-items: flex-start;

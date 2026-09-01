@@ -80,25 +80,6 @@ const programs = [
   },
 ]
 
-const placementCandidates = [
-  { name: 'Sasri I', image: '/placements/students/sasri-i.png' },
-  { name: 'Kumari', image: '/placements/students/kumari.png' },
-  { name: 'Aaisha', image: '/placements/students/aaisha.png' },
-  { name: 'Mala', image: '/placements/students/mala.png' },
-  { name: 'Vinoth', image: '/placements/students/vinoth.png' },
-  { name: 'Anuja', image: '/placements/students/anuja.png' },
-  { name: 'Kokila', image: '/placements/students/kokila.png' },
-  { name: 'Banu', image: '/placements/students/banu.png' },
-  { name: 'Jancy', image: '/placements/students/jancy.png' },
-  { name: 'Deepika', image: '/placements/students/deepika.png' },
-  { name: 'Priyanka', image: '/placements/students/priyanka.png' },
-  { name: 'Manju', image: '/placements/students/manju.png' },
-  { name: 'Kokila', image: '/placements/students/kokila-2.png' },
-  { name: 'Maha', image: '/placements/students/maha.png' },
-  { name: 'Janani', image: '/placements/students/janani.png' },
-  { name: 'Boomiya', image: '/placements/students/boomiya.png' },
-]
-
 const googleReviews = [
   {
     name: 'Sonia Anbu Selvam',
@@ -633,7 +614,7 @@ export default async function HomePage() {
 
           <section className="placement-success-wall" aria-labelledby="placement-wall-title">
             <div className="placement-wall-year" aria-hidden="true">
-              2025
+              2026
             </div>
             <div className="placement-story-heading">
               <div className="placement-heading-lockup">
@@ -641,7 +622,7 @@ export default async function HomePage() {
                   <Trophy size={25} />
                 </span>
                 <div>
-                  <span className="ai-kicker">Class of 2025</span>
+                  <span className="ai-kicker">Class of 2026</span>
                   <h3 id="placement-wall-title">Celebrating our placed candidates</h3>
                 </div>
               </div>
@@ -653,24 +634,14 @@ export default async function HomePage() {
               Every portrait represents progress—from guided learning and portfolio preparation to
               interview confidence and a new career opportunity.
             </p>
-            <div className="candidate-story-grid">
-              {placementCandidates.slice(0, 8).map((candidate, index) => (
-                <article className="candidate-story-card" key={`${candidate.name}-${index}`}>
-                  <span className="candidate-success-mark">
-                    <BadgeCheck size={13} /> Placed
-                  </span>
-                  <Image
-                    alt={`${candidate.name}, a candidate featured in Success Root Technologies 2025 placement highlights`}
-                    fill
-                    sizes="(max-width: 520px) 50vw, (max-width: 900px) 25vw, 150px"
-                    src={candidate.image}
-                  />
-                  <div>
-                    <strong>{candidate.name}</strong>
-                    <span>Success Root Technologies · 2025</span>
-                  </div>
-                </article>
-              ))}
+            <div className="placement-home-banner">
+              <Image
+                alt="Success Root Technologies successfully placed candidates for 2026"
+                height={1080}
+                sizes="(max-width: 768px) 100vw, 1400px"
+                src="/placements/srt-placed-candidates-2026.webp"
+                width={1920}
+              />
             </div>
             <div className="placement-wall-footer">
               <span>
