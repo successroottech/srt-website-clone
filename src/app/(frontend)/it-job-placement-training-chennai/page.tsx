@@ -1,6 +1,7 @@
 import configPromise from '@payload-config'
 import { ArrowRight, BadgeCheck, BriefcaseBusiness, Check, FileUser, MessagesSquare, Target } from 'lucide-react'
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { getPayload } from 'payload'
 
@@ -74,6 +75,19 @@ export default function PlacementTrainingPage() {
               interview performance. Our role is to help eligible candidates become better prepared.
             </p>
           </div>
+        </div>
+      </section>
+
+      <section className="placement-success-banner" aria-label="Success Root Technologies placement highlights">
+        <div className="container">
+          <Image
+            alt="Success Root Technologies students who completed training and got hired"
+            height={600}
+            priority
+            sizes="(max-width: 768px) 100vw, 1440px"
+            src="/placements/srt-placement-success-banner.webp"
+            width={2400}
+          />
         </div>
       </section>
 
