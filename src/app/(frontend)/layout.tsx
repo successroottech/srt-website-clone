@@ -12,6 +12,7 @@ import { Providers } from '@/providers'
 import { InitTheme } from '@/providers/Theme/InitTheme'
 import { mergeOpenGraph } from '@/utilities/mergeOpenGraph'
 import { draftMode } from 'next/headers'
+import Script from 'next/script'
 
 import './globals.css'
 import { getServerSideURL } from '@/utilities/getURL'
@@ -21,6 +22,7 @@ import { GoogleAnalyticsPageView } from './GoogleAnalyticsPageView'
 
 const googleAdsID = 'AW-17697110474'
 const gaMeasurementID = 'G-GV2FP6C2HN'
+const clarityProjectID = 'ybb7jrdbja'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const { isEnabled } = await draftMode()
@@ -46,6 +48,13 @@ if (window.location.hostname === 'successroottech.com' || window.location.hostna
         />
       </head>
       <body>
+        <Script id="microsoft-clarity" strategy="afterInteractive">
+          {`(function(c,l,a,r,i,t,y){
+    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+})(window, document, "clarity", "script", "${clarityProjectID}");`}
+        </Script>
         <Providers>
           <AdminBar
             adminBarProps={{
