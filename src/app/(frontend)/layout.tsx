@@ -19,6 +19,7 @@ import { getServerSideURL } from '@/utilities/getURL'
 import { FreeChatbot } from '@/components/FreeChatbot'
 import { HomepageLeadGate } from './HomepageLeadGate'
 import { GoogleAnalyticsPageView } from './GoogleAnalyticsPageView'
+import { WhatsAppConversionTracker } from '@/components/WhatsAppConversionTracker'
 
 const googleAdsID = 'AW-17697110474'
 const gaMeasurementID = 'G-GV2FP6C2HN'
@@ -64,6 +65,7 @@ if (window.location.hostname === 'successroottech.com' || window.location.hostna
 
           <Header />
           <GoogleAnalyticsPageView measurementID={gaMeasurementID} />
+          <WhatsAppConversionTracker />
           {children}
           <HomepageLeadGate />
           <Footer />
