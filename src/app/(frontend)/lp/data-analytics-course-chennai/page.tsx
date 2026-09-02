@@ -75,14 +75,14 @@ const faqs = [
 export default function DataAnalyticsAdsLandingPage() {
   return (
     <main className={`srt-ad-landing ${styles.page}`}>
-      <div className={styles.miniHeader}>
+      <header className={styles.miniHeader}>
         <div className={styles.shell}>
           <Link href="/" aria-label="Success Root Technologies main website">
-            <Image src="/srt-logo-lockup.png" alt="Success Root Technologies" width={205} height={64} priority />
+            <Image src="/srt-logo-lockup.png" alt="Success Root Technologies" width={205} height={64} priority unoptimized />
           </Link>
           <DataAnalyticsLeadActions compact />
         </div>
-      </div>
+      </header>
 
       <section className={styles.hero}>
         <div className={`${styles.shell} ${styles.heroGrid}`}>
@@ -185,9 +185,9 @@ export default function DataAnalyticsAdsLandingPage() {
         <div className={styles.shell}><span>START YOUR DATA ANALYTICS JOURNEY</span><h2>Get Current Fees & Next Batch Details</h2><p>Complete the short form and an SRT course advisor will contact you with the latest information.</p><DataAnalyticsLeadActions /></div>
       </section>
 
-      <div className={styles.miniFooter}>
+      <footer className={styles.miniFooter}>
         <div className={styles.shell}><span>© {new Date().getFullYear()} Success Root Technologies</span><nav aria-label="Essential links"><Link href="/privacy-policy/">Privacy Policy</Link><Link href="/contact-us/">Contact</Link><Link href="/">Main Website</Link></nav></div>
-      </div>
+      </footer>
 
       <div className={styles.mobileSticky} aria-label="Contact SRT"><DataAnalyticsLeadActions sticky /></div>
     </main>

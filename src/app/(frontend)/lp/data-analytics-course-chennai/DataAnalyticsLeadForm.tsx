@@ -60,12 +60,12 @@ export function DataAnalyticsLeadForm() {
     <span className={styles.formEyebrow}>GET COURSE DETAILS</span>
     <h2>Get Fees & Next Batch Details</h2>
     <p>Share your details and our course advisor will contact you.</p>
-    <label>Name <span aria-hidden="true">*</span><input name="name" autoComplete="name" required maxLength={80} placeholder="Your name" /></label>
-    <label>Mobile Number <span aria-hidden="true">*</span><input name="mobile" autoComplete="tel" required inputMode="tel" pattern="[0-9+() -]{8,18}" placeholder="Your mobile number" /></label>
-    <label>Email <small>Optional</small><input name="email" autoComplete="email" type="email" maxLength={120} placeholder="Your email address" /></label>
+    <label><span className={styles.fieldLabel}>Name <em aria-hidden="true">*</em></span><input name="name" autoComplete="name" required maxLength={80} placeholder="Your name" /></label>
+    <label><span className={styles.fieldLabel}>Mobile Number <em aria-hidden="true">*</em></span><input name="mobile" autoComplete="tel" required inputMode="tel" pattern="[0-9+() -]{8,18}" placeholder="Your mobile number" /></label>
+    <label><span className={styles.fieldLabel}>Email <small>Optional</small></span><input name="email" autoComplete="email" type="email" maxLength={120} placeholder="Your email address" /></label>
     <div className={styles.formRow}>
-      <label>Current Status <select name="status" defaultValue=""><option value="">Select</option><option>Student</option><option>Fresher</option><option>Working Professional</option><option>Career Switcher</option><option>Other</option></select></label>
-      <label>Training Mode <select name="mode" defaultValue=""><option value="">Select</option><option>Classroom</option><option>Online</option></select></label>
+      <label><span className={styles.fieldLabel}>Current Status</span><select name="status" defaultValue=""><option value="">Select</option><option>Student</option><option>Fresher</option><option>Working Professional</option><option>Career Switcher</option><option>Other</option></select></label>
+      <label><span className={styles.fieldLabel}>Training Mode</span><select name="mode" defaultValue=""><option value="">Select</option><option>Classroom</option><option>Online</option></select></label>
     </div>
     <input name="course" type="hidden" value="Data Analytics" />
     <input className={styles.trap} name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />

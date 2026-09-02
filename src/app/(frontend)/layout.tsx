@@ -20,6 +20,7 @@ import { FreeChatbot } from '@/components/FreeChatbot'
 import { HomepageLeadGate } from './HomepageLeadGate'
 import { GoogleAnalyticsPageView } from './GoogleAnalyticsPageView'
 import { WhatsAppConversionTracker } from '@/components/WhatsAppConversionTracker'
+import { FrontendRouteShell } from './FrontendRouteShell'
 
 const googleAdsID = 'AW-17697110474'
 const gaMeasurementID = 'G-GV2FP6C2HN'
@@ -57,19 +58,29 @@ if (window.location.hostname === 'successroottech.com' || window.location.hostna
 })(window, document, "clarity", "script", "${clarityProjectID}");`}
         </Script>
         <Providers>
-          <AdminBar
-            adminBarProps={{
-              preview: isEnabled,
-            }}
-          />
-
-          <Header />
           <GoogleAnalyticsPageView measurementID={gaMeasurementID} />
           <WhatsAppConversionTracker />
-          {children}
-          <HomepageLeadGate />
-          <Footer />
-          <FreeChatbot />
+          <FrontendRouteShell
+            standardHeader={
+              <>
+                <AdminBar
+                  adminBarProps={{
+                    preview: isEnabled,
+                  }}
+                />
+                <Header />
+              </>
+            }
+            standardFooter={
+              <>
+                <HomepageLeadGate />
+                <Footer />
+                <FreeChatbot />
+              </>
+            }
+          >
+            {children}
+          </FrontendRouteShell>
         </Providers>
       </body>
     </html>
