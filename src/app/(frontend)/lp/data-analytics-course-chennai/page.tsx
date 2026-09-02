@@ -78,7 +78,7 @@ export default function DataAnalyticsAdsLandingPage() {
       <header className={styles.miniHeader}>
         <div className={styles.shell}>
           <Link href="/" aria-label="Success Root Technologies main website">
-            <Image src="/srt-logo-lockup.png" alt="Success Root Technologies" width={205} height={64} priority unoptimized />
+            <Image src="/srt-full-logo.png" alt="Success Root Technologies" width={700} height={300} priority unoptimized />
           </Link>
           <DataAnalyticsLeadActions compact />
         </div>

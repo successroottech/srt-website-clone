@@ -68,7 +68,15 @@ export async function POST(request: NextRequest) {
 
   if (process.env.SMTP_HOST && process.env.SMTP_USER && process.env.SMTP_PASSWORD) {
     const escapeHTML = (value: string) => value.replace(/[&<>'"]/g, (character) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' })[character] || character)
-    const safe = { name: escapeHTML(name), mobile: escapeHTML(mobile), course: escapeHTML(isAnalytics ? 'Data Analytics' : 'Full Stack Development') }
+    const safe = {
+      name: escapeHTML(name),
+      mobile: escapeHTML(mobile),
+      email: escapeHTML(email || 'Not provided'),
+      status: escapeHTML(status),
+      mode: escapeHTML(mode),
+      batch: escapeHTML(batch),
+      course: escapeHTML(isAnalytics ? 'Data Analytics' : 'Full Stack Development'),
+    }
     const html = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>
 <body style="margin:0;padding:0;background:#eef3f7;font-family:Arial,Helvetica,sans-serif;color:#172033">
@@ -88,6 +96,10 @@ export async function POST(request: NextRequest) {
       <tr><td style="padding:18px 34px">
         <table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="border:1px solid #dce5eb;border-radius:12px;overflow:hidden">
           <tr><td style="padding:15px 18px;background:#f7fafc;width:38%;font-size:13px;font-weight:700;color:#526273;border-bottom:1px solid #e4ebf0">Mobile number</td><td style="padding:15px 18px;font-size:15px;font-weight:700;border-bottom:1px solid #e4ebf0"><a href="tel:${safe.mobile}" style="color:#075985;text-decoration:none">${safe.mobile}</a></td></tr>
+          <tr><td style="padding:15px 18px;background:#f7fafc;font-size:13px;font-weight:700;color:#526273;border-bottom:1px solid #e4ebf0">Email</td><td style="padding:15px 18px;font-size:15px;border-bottom:1px solid #e4ebf0">${email ? `<a href="mailto:${safe.email}" style="color:#075985;text-decoration:none">${safe.email}</a>` : safe.email}</td></tr>
+          <tr><td style="padding:15px 18px;background:#f7fafc;font-size:13px;font-weight:700;color:#526273;border-bottom:1px solid #e4ebf0">Current status</td><td style="padding:15px 18px;font-size:15px;border-bottom:1px solid #e4ebf0">${safe.status}</td></tr>
+          <tr><td style="padding:15px 18px;background:#f7fafc;font-size:13px;font-weight:700;color:#526273;border-bottom:1px solid #e4ebf0">Training mode</td><td style="padding:15px 18px;font-size:15px;border-bottom:1px solid #e4ebf0">${safe.mode}</td></tr>
+          <tr><td style="padding:15px 18px;background:#f7fafc;font-size:13px;font-weight:700;color:#526273;border-bottom:1px solid #e4ebf0">Preferred batch</td><td style="padding:15px 18px;font-size:15px;border-bottom:1px solid #e4ebf0">${safe.batch}</td></tr>
           <tr><td style="padding:15px 18px;background:#f7fafc;font-size:13px;font-weight:700;color:#526273">Course</td><td style="padding:15px 18px;font-size:15px;font-weight:700">${safe.course}</td></tr>
         </table>
       </td></tr>
@@ -108,7 +120,7 @@ export async function POST(request: NextRequest) {
       to: process.env.WORKSHOP_ADMIN_EMAIL || process.env.SMTP_USER,
       replyTo: email || undefined,
       subject: `${courseName} Course Enquiry – ${name}`,
-      text: `New ${courseName} course enquiry\n\nName: ${name}\nMobile: ${mobile}\nCourse: ${isAnalytics ? 'Data Analytics' : 'Full Stack Development'}\nSource: ${sourceName}`,
+      text: `New ${courseName} course enquiry\n\nName: ${name}\nMobile: ${mobile}\nEmail: ${email || 'Not provided'}\nCurrent status: ${status}\nTraining mode: ${mode}\nPreferred batch: ${batch}\nCourse: ${isAnalytics ? 'Data Analytics' : 'Full Stack Development'}\nSource: ${sourceName}`,
       html,
     }).catch((error) => console.error('Full Stack enquiry email notification failed:', error))
   }
