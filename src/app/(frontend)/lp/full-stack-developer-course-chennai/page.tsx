@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { Braces, BriefcaseBusiness, Check, Code2, Database, GitBranch, Laptop, MapPin, Server, Users } from 'lucide-react'
+import { Braces, BriefcaseBusiness, Check, CloudUpload, Code2, Database, GitBranch, Laptop, MapPin, Network, Server, Users } from 'lucide-react'
 
 import { FullStackLeadActions, FullStackLeadForm } from './FullStackLeadForm'
 import styles from './page.module.css'
@@ -27,6 +27,8 @@ const modules = [
   ['Node.js & Express.js', 'Build backend services, application routes and REST APIs.', Server],
   ['MongoDB', 'Work with document databases and connect application data to the backend.', Database],
   ['Git, GitHub & Postman', 'Manage source code, collaborate through GitHub and test APIs with Postman.', GitBranch],
+  ['REST APIs & JSON', 'Connect frontend and backend systems through REST APIs, JSON and API integration.', Network],
+  ['Application Deployment', 'Prepare and deploy the Full Stack capstone application.', CloudUpload],
 ] as const
 
 const projects = [
@@ -42,7 +44,6 @@ const outcomes = [
   ['Backend APIs', 'Develop Node.js and Express.js routes and REST API workflows.'],
   ['Database Integration', 'Store and work with application data using MongoDB.'],
   ['Full Stack Integration', 'Connect frontend experiences with backend services and databases.'],
-  ['Source Control', 'Use Git and GitHub to manage project work and development changes.'],
   ['Capstone Development', 'Apply the stack through assignments, mini projects and a Full Stack capstone.'],
 ]
 
