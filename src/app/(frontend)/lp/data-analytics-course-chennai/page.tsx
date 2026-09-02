@@ -105,6 +105,22 @@ export default function DataAnalyticsAdsLandingPage() {
         </div>
       </section>
 
+      <section className={`${styles.section} ${styles.credentials}`} aria-labelledby="credentials-title">
+        <div className={styles.shell}>
+          <div className={styles.sectionHeading}><span>SRT CREDENTIALS</span><h2 id="credentials-title">Trusted Training. Recognized Standards.</h2><p>Build your career with practical training supported by established quality standards and career-focused learning.</p></div>
+          <div className={styles.credentialGrid}>
+            <article><div><Image src="/trust/iso-9001.png" alt="ISO 9001:2015 certification" width={820} height={552} sizes="160px" /></div><h3>ISO 9001:2015</h3><p>Quality Management Standard</p></article>
+            <article><div><Image src="/trust/msme.png" alt="MSME registered business" width={500} height={395} sizes="160px" /></div><h3>MSME Registered</h3><p>Registered Business</p></article>
+            <article><div><Image src="/trust/iaf-accreditation.webp" alt="International Accreditation Forum recognition" width={500} height={395} sizes="180px" /></div><h3>IAF Recognition</h3><p>International Accreditation Forum</p></article>
+          </div>
+          <div className={styles.credentialStats} aria-label="SRT outcomes and experience">
+            <div><strong>300+</strong><span>Students Placed</span></div>
+            <div><strong>20+</strong><span>Partner Companies</span></div>
+            <div><strong>3+</strong><span>Years of Experience</span></div>
+          </div>
+        </div>
+      </section>
+
       <section className={styles.section}>
         <div className={styles.shell}>
           <div className={styles.sectionHeading}><span>COURSE CURRICULUM</span><h2>What You’ll Learn</h2><p>Build a practical analytics toolkit through guided exercises and portfolio-oriented projects.</p></div>
@@ -128,6 +144,16 @@ export default function DataAnalyticsAdsLandingPage() {
             <figure><Image src="/course-trust/srt-classroom-training-2026.jpg" alt="Instructor-led classroom training at Success Root Technologies in Chennai" fill sizes="(max-width: 800px) 50vw, 22vw" /><figcaption>Classroom sessions</figcaption></figure>
             <figure><Image src="/course-trust/srt-practical-lab-2026.jpg" alt="Students completing practical computer exercises at Success Root Technologies" fill sizes="(max-width: 800px) 50vw, 22vw" /><figcaption>Practical learning</figcaption></figure>
           </div>
+        </div>
+      </section>
+
+      <section className={`${styles.section} ${styles.placementProof}`} aria-labelledby="placement-proof-title">
+        <div className={styles.shell}>
+          <div className={styles.sectionHeading}><span>PLACEMENT HIGHLIGHTS • 2026</span><h2 id="placement-proof-title">Our Placement Success Stories</h2><p>Celebrating learners who progressed from training and interview preparation to new career opportunities.</p></div>
+          <div className={styles.placementImage}>
+            <Image src="/placements/srt-placed-candidates-2026.webp" alt="Success Root Technologies 2026 placement highlights featuring successfully placed candidates" width={1920} height={1080} sizes="(max-width: 1200px) calc(100vw - 40px), 1160px" />
+          </div>
+          <div className={styles.placementCta}><h3>Ready to Build Your Career in Data Analytics?</h3><p>Get current course fees, batch details and placement-support information from the SRT team.</p><DataAnalyticsLeadActions /></div>
         </div>
       </section>
 

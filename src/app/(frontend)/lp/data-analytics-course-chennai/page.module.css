@@ -38,6 +38,18 @@
 .trustStrip span { align-items:center; border-right:1px solid var(--line); color:#30455f; display:flex; font-size:.82rem; font-weight:750; gap:7px; justify-content:center; min-height:76px; padding:12px; text-align:center; }
 .trustStrip span:first-child { border-left:1px solid var(--line); }
 .trustStrip svg { color:var(--blue); flex:none; }
+.credentials { background:linear-gradient(180deg,#f7faff 0%,#fff 100%); padding-block:68px; }
+.credentialGrid { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }
+.credentialGrid article { align-items:center; background:#fff; border:1px solid var(--line); border-radius:17px; box-shadow:0 12px 30px rgba(20,52,89,.07); display:flex; flex-direction:column; min-height:230px; padding:24px; text-align:center; }
+.credentialGrid article>div { align-items:center; display:flex; height:108px; justify-content:center; margin-bottom:13px; width:100%; }
+.credentialGrid img { height:100%; max-width:180px; object-fit:contain; width:100%; }
+.credentialGrid h3 { color:var(--navy); font-size:1.08rem; margin:0 0 6px; }
+.credentialGrid p { color:var(--muted); line-height:1.5; margin:0; }
+.credentialStats { background:var(--navy); border-radius:16px; display:grid; grid-template-columns:repeat(3,1fr); margin-top:18px; overflow:hidden; }
+.credentialStats>div { align-items:center; display:flex; flex-direction:column; padding:20px; text-align:center; }
+.credentialStats>div+div { border-left:1px solid rgba(255,255,255,.15); }
+.credentialStats strong { color:var(--yellow); font-size:1.75rem; line-height:1.1; }
+.credentialStats span { color:#dce8f6; font-size:.83rem; font-weight:700; margin-top:6px; }
 .section { padding:84px 0; }
 .alt { background:var(--soft); }
 .sectionHeading { margin:0 auto 34px; max-width:730px; text-align:center; }
@@ -67,6 +79,16 @@
 .galleryFeature { grid-row:1 / 3; }
 .gallery img { object-fit:contain; }
 .gallery figcaption { background:linear-gradient(transparent,rgba(5,23,45,.85)); bottom:0; color:#fff; font-size:.82rem; font-weight:700; left:0; padding:30px 12px 11px; position:absolute; right:0; z-index:1; }
+.placementProof { background:var(--navy); color:#fff; }
+.placementProof .sectionHeading h2 { color:#fff; }
+.placementProof .sectionHeading p { color:#c6d5e7; }
+.placementImage { background:#fff; border:1px solid rgba(255,255,255,.3); border-radius:18px; box-shadow:0 24px 55px rgba(0,0,0,.24); line-height:0; overflow:hidden; padding:10px; }
+.placementImage img { display:block; height:auto; object-fit:contain; width:100%; }
+.placementCta { margin:32px auto 0; max-width:760px; text-align:center; }
+.placementCta h3 { color:#fff; font-size:clamp(1.4rem,2.5vw,2rem); margin:0 0 10px; }
+.placementCta p { color:#c6d5e7; line-height:1.65; margin:0; }
+.placementCta .actions a { background:#fff; }
+.placementCta .actions button { color:var(--navy); }
 .reviews { background:var(--navy); color:#fff; }
 .reviewTop { align-items:end; display:flex; justify-content:space-between; gap:30px; margin-bottom:28px; }
 .reviewTop .sectionHeading { margin:0; text-align:left; }
@@ -146,6 +168,9 @@
   .reviewTop { align-items:flex-start; flex-direction:column; }
   .reviewTop>a { align-items:flex-start; }
   .reviewGrid { grid-template-columns:1fr; }
+  .credentialGrid { grid-template-columns:repeat(3,1fr); gap:12px; }
+  .credentialGrid article { min-height:205px; padding:18px 12px; }
+  .credentialGrid article>div { height:88px; }
   .projectGrid { grid-template-columns:repeat(2,1fr); }
   .faqLayout .sectionHeading { text-align:center; }
   .miniFooter>.shell { align-items:flex-start; flex-direction:column; }
@@ -160,6 +185,13 @@
   .trustStrip span { min-height:66px; padding:9px; }
   .trustStrip span:nth-child(odd) { border-left:0; }
   .trustStrip span:nth-child(even) { border-right:0; }
+  .credentials { padding-block:54px; }
+  .credentialGrid { grid-template-columns:1fr; }
+  .credentialGrid article { min-height:0; }
+  .credentialStats { grid-template-columns:1fr; }
+  .credentialStats>div { padding:16px; }
+  .credentialStats>div+div { border-left:0; border-top:1px solid rgba(255,255,255,.15); }
+  .placementImage { border-radius:12px; padding:5px; }
   .gallery { grid-template-rows:230px 140px; }
   .galleryFeature { grid-column:1 / 3; grid-row:auto; }
   .projectGrid { grid-template-columns:1fr; }
