@@ -140,9 +140,9 @@ export default function DataAnalyticsAdsLandingPage() {
         <div className={`${styles.shell} ${styles.proofGrid}`}>
           <div className={styles.proofCopy}><span className={styles.eyebrowDark}>REAL SRT CLASSROOMS · 2026</span><h2>Real Training. Practical Learning.</h2><p>See how learners at Success Root Technologies build practical skills through classroom sessions, guided exercises and project-based learning.</p><ul>{['Instructor-led classroom sessions', 'Hands-on computer practice', 'West Mambalam training centre'].map((item) => <li key={item}><Check size={17} />{item}</li>)}</ul></div>
           <div className={styles.gallery}>
-            <figure className={styles.galleryFeature}><Image src="/course-trust/srt-training-centre-2026.jpg" alt="Success Root Technologies training centre classroom in West Mambalam Chennai" fill sizes="(max-width: 800px) 100vw, 45vw" /><figcaption>SRT training centre</figcaption></figure>
-            <figure><Image src="/course-trust/srt-classroom-training-2026.jpg" alt="Instructor-led classroom training at Success Root Technologies in Chennai" fill sizes="(max-width: 800px) 50vw, 22vw" /><figcaption>Classroom sessions</figcaption></figure>
-            <figure><Image src="/course-trust/srt-practical-lab-2026.jpg" alt="Students completing practical computer exercises at Success Root Technologies" fill sizes="(max-width: 800px) 50vw, 22vw" /><figcaption>Practical learning</figcaption></figure>
+            <figure className={styles.galleryFeature}><Image src="/course-trust/srt-training-centre-2026.jpg" alt="Success Root Technologies training centre classroom in West Mambalam Chennai" width={1600} height={900} sizes="(max-width: 800px) 100vw, 58vw" /><figcaption>SRT training centre</figcaption></figure>
+            <figure><Image src="/course-trust/srt-classroom-training-2026.jpg" alt="Instructor-led classroom training at Success Root Technologies in Chennai" width={1600} height={3556} sizes="(max-width: 560px) 46vw, (max-width: 800px) 50vw, 29vw" /><figcaption>Classroom sessions</figcaption></figure>
+            <figure><Image src="/course-trust/srt-practical-lab-2026.jpg" alt="Students completing practical computer exercises at Success Root Technologies" width={1400} height={3111} sizes="(max-width: 560px) 46vw, (max-width: 800px) 50vw, 29vw" /><figcaption>Practical learning</figcaption></figure>
           </div>
         </div>
       </section>
