@@ -6,6 +6,7 @@ import { MapPin, MessageCircle, Phone } from 'lucide-react'
 import styles from './page.module.css'
 
 const phone = '+918939069135'
+const displayPhone = '+91 89390 69135'
 const whatsapp = `https://wa.me/918939069135?text=${encodeURIComponent('Hi SRT, I would like details about the Data Analytics Course in Chennai.')}`
 const directions = 'https://www.google.com/maps/search/?api=1&query=Success+Root+Technologies+West+Mambalam+Chennai+600033'
 
@@ -22,11 +23,11 @@ function focusForm() {
 }
 
 export function DataAnalyticsLeadActions({ compact = false, directions: showDirections = false, sticky = false }: { compact?: boolean; directions?: boolean; sticky?: boolean }) {
-  if (sticky) return <><a href={`tel:${phone}`} onClick={() => track('data_analytics_phone_click')}><Phone size={17} />Call</a><a href={whatsapp} target="_blank" rel="noreferrer" onClick={() => track('data_analytics_whatsapp_click')}><MessageCircle size={17} />WhatsApp</a><button type="button" onClick={focusForm}>Enquire</button></>
+  if (sticky) return <><a href={`tel:${phone}`} onClick={() => track('data_analytics_phone_click')}><Phone size={17} />Call {displayPhone}</a><a href={whatsapp} target="_blank" rel="noreferrer" onClick={() => track('data_analytics_whatsapp_click')}><MessageCircle size={17} />WhatsApp</a><button type="button" onClick={focusForm}>Enquire</button></>
   return <div className={`${styles.actions} ${compact ? styles.actionsCompact : ''}`}>
     {!compact && !showDirections && <button type="button" onClick={focusForm}>Get Fees & Next Batch Details</button>}
     {showDirections && <a href={directions} target="_blank" rel="noreferrer" onClick={() => track('data_analytics_directions_click')}><MapPin size={17} />Get Directions</a>}
-    <a href={`tel:${phone}`} onClick={() => track('data_analytics_phone_click')}><Phone size={17} />{compact ? 'Call' : 'Call Now'}</a>
+    <a href={`tel:${phone}`} onClick={() => track('data_analytics_phone_click')}><Phone size={17} />Call {displayPhone}</a>
     <a href={whatsapp} target="_blank" rel="noreferrer" onClick={() => track('data_analytics_whatsapp_click')}><MessageCircle size={17} />{compact ? 'WhatsApp' : 'WhatsApp Us'}</a>
   </div>
 }
