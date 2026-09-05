@@ -2,6 +2,7 @@ import Link from 'next/link'
 import React from 'react'
 
 import { Logo } from '@/components/Logo/Logo'
+import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon'
 import { MobileNavigation } from './MobileNavigation'
 
 const links = [
@@ -30,7 +31,14 @@ export async function Header() {
           ))}
         </nav>
         <MobileNavigation links={links} />
-        <a className="header-cta" href="https://wa.me/918939069135">Start a conversation</a>
+        <a
+          aria-label="Chat with SRT on WhatsApp"
+          className="header-cta"
+          href="https://wa.me/918939069135"
+          title="Chat with SRT on WhatsApp"
+        >
+          <WhatsAppIcon height={24} width={24} />
+        </a>
       </div>
     </header>
   )
