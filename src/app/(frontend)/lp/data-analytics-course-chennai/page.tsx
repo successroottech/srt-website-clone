@@ -12,7 +12,7 @@ import {
   Users,
 } from 'lucide-react'
 
-import { DataAnalyticsLeadActions, DataAnalyticsLeadForm } from './DataAnalyticsLeadForm'
+import { DataAnalyticsHeroAction, DataAnalyticsLeadActions, DataAnalyticsLeadForm } from './DataAnalyticsLeadForm'
 import styles from './page.module.css'
 
 const canonical = 'https://successroottech.com/courses/data-analytics-course-chennai/'
@@ -89,7 +89,9 @@ export default function DataAnalyticsAdsLandingPage() {
           <div className={styles.heroCopy}>
             <span className={styles.eyebrow}>DATA ANALYTICS TRAINING • CHENNAI</span>
             <h1>Data Analytics Course in Chennai with Placement Assistance</h1>
-            <p className={styles.heroLead}>Build practical skills in Advanced Excel, SQL, Power BI and Python through hands-on training, projects and career-focused support.</p>
+            <p className={styles.heroLead}>Become a Job-Ready Data Analyst with hands-on training in Excel, SQL, Power BI &amp; Python.</p>
+            <p className={styles.heroTrust}>Practical Training • Real-Time Projects • Placement Assistance • West Mambalam, Chennai</p>
+            <DataAnalyticsHeroAction />
             <div className={styles.benefits}>
               {['Classroom & Online Training', 'Practical Projects', 'Placement Assistance', 'Interview Preparation', 'Weekday / Weekend Batches'].map((item) => <span key={item}><Check size={17} />{item}</span>)}
             </div>

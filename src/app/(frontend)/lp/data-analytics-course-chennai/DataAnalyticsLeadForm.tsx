@@ -32,6 +32,10 @@ export function DataAnalyticsLeadActions({ compact = false, directions: showDire
   </div>
 }
 
+export function DataAnalyticsHeroAction() {
+  return <button className={styles.heroCta} type="button" onClick={focusForm}>Get Fees &amp; Batch Details</button>
+}
+
 export function DataAnalyticsLeadForm() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -59,7 +63,7 @@ export function DataAnalyticsLeadForm() {
 
   return <form className={styles.form} id="data-analytics-lp-enquiry" onSubmit={submit}>
     <span className={styles.formEyebrow}>GET COURSE DETAILS</span>
-    <h2>Get Fees & Next Batch Details</h2>
+    <h2>Get Course Fees &amp; Next Batch Details</h2>
     <p>Share your details and our course advisor will contact you.</p>
     <label><span className={styles.fieldLabel}>Name <em aria-hidden="true">*</em></span><input name="name" autoComplete="name" required maxLength={80} placeholder="Your name" /></label>
     <label><span className={styles.fieldLabel}>Mobile Number <em aria-hidden="true">*</em></span><input name="mobile" autoComplete="tel" required inputMode="tel" pattern="[0-9+() -]{8,18}" placeholder="Your mobile number" /></label>
@@ -70,7 +74,7 @@ export function DataAnalyticsLeadForm() {
     </div>
     <input name="course" type="hidden" value="Data Analytics" />
     <input className={styles.trap} name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
-    <button className={styles.submit} disabled={loading} type="submit">{loading ? 'Sending…' : 'Get Fees & Next Batch Details'}</button>
+    <button className={styles.submit} disabled={loading} type="submit">{loading ? 'Sending…' : 'Get Fees & Batch Details'}</button>
     {error && <p className={styles.error} role="alert">{error}</p>}
     <small className={styles.consent}>By submitting, you agree to be contacted about this course.</small>
   </form>
