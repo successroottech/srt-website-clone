@@ -3,6 +3,7 @@ build/
 dist/
 node_modules/
 .next/
+.next-static-retention/
 out/
 .vercel/
 next-env.d.ts
