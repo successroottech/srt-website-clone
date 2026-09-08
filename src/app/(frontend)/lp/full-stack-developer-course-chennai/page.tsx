@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Braces, BriefcaseBusiness, Check, CloudUpload, Code2, Database, GitBranch, Laptop, MapPin, Network, Server, Users } from 'lucide-react'
 
-import { FullStackLeadActions, FullStackLeadForm } from './FullStackLeadForm'
+import { FullStackHeroAction, FullStackLeadActions, FullStackLeadForm } from './FullStackLeadForm'
 import styles from './page.module.css'
 
 const canonical = 'https://successroottech.com/courses/full-stack-developer-course-chennai/'
@@ -90,7 +90,9 @@ export default function FullStackAdsLandingPage() {
           <div className={styles.heroCopy}>
             <span className={styles.eyebrow}>FULL STACK DEVELOPER TRAINING • CHENNAI</span>
             <h1>Full Stack Developer Course in Chennai with Placement Assistance</h1>
-            <p className={styles.heroLead}>Build practical development skills in React JS, Node.js, Express.js and MongoDB through hands-on training, assignments and projects.</p>
+            <p className={styles.heroLead}>Become a Job-Ready Full Stack Developer with hands-on training in React.js, Node.js, Express.js &amp; MongoDB.</p>
+            <p className={styles.heroTrust}>Practical Training • Live Projects • Placement Assistance • West Mambalam, Chennai</p>
+            <FullStackHeroAction />
             <div className={styles.benefits}>
               {['Classroom & Online Training', 'Practical Coding Sessions', 'Real-Time Projects', 'Placement Assistance', 'Interview Preparation', 'Weekday / Weekend Batches'].map((item) => <span key={item}><Check size={17} />{item}</span>)}
             </div>
