@@ -39,39 +39,81 @@ export function DataAnalyticsHeroAction() {
 export function DataAnalyticsLeadForm() {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
+  const [updateToken, setUpdateToken] = useState('')
 
-  async function submit(event: FormEvent<HTMLFormElement>) {
+  function validMobile(value: FormDataEntryValue | null) {
+    const digits = String(value || '').replace(/\D/g, '')
+    const local = digits.startsWith('91') && digits.length === 12 ? digits.slice(2) : digits
+    return /^[6-9]\d{9}$/.test(local)
+  }
+
+  async function submitContact(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     setLoading(true)
     setError('')
+    const formData = new FormData(event.currentTarget)
+    if (!String(formData.get('name') || '').trim() || !validMobile(formData.get('mobile'))) {
+      setError('Enter your name and a valid Indian mobile number.')
+      setLoading(false)
+      return
+    }
     const response = await fetch('/api/full-stack-enquiry', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(Object.fromEntries(new FormData(event.currentTarget))),
+      body: JSON.stringify(Object.fromEntries(formData)),
     }).catch(() => null)
 
-    if (response?.ok) {
+    const result = response ? await response.json().catch(() => ({})) : {}
+    if (response?.ok && typeof result.updateToken === 'string') {
       track('data_analytics_form_submit')
-      window.location.assign('/thank-you/data-analytics-enquiry/')
+      setUpdateToken(result.updateToken)
+      setLoading(false)
       return
     }
 
-    const result = response ? await response.json().catch(() => ({})) : {}
     setError(result.error || 'We could not submit your enquiry. Please call or WhatsApp SRT.')
     setLoading(false)
   }
 
-  return <form className={styles.form} id="data-analytics-lp-enquiry" onSubmit={submit}>
-    <span className={styles.formEyebrow}>GET COURSE DETAILS</span>
-    <h2>Get Course Fees &amp; Next Batch Details</h2>
-    <p>Share your details and our course advisor will contact you.</p>
-    <label><span className={styles.fieldLabel}>Name <em aria-hidden="true">*</em></span><input name="name" autoComplete="name" required maxLength={80} placeholder="Your name" /></label>
-    <label><span className={styles.fieldLabel}>Mobile Number <em aria-hidden="true">*</em></span><input name="mobile" autoComplete="tel" required inputMode="tel" pattern="[0-9+() -]{8,18}" placeholder="Your mobile number" /></label>
+  async function submitDetails(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    if (!updateToken) return
+    setLoading(true)
+    setError('')
+    const formData = new FormData(event.currentTarget)
+    const response = await fetch('/api/full-stack-enquiry', {
+      method: 'PATCH', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...Object.fromEntries(formData), updateToken }),
+    }).catch(() => null)
+    if (response?.ok) {
+      window.location.assign('/thank-you/data-analytics-enquiry/')
+      return
+    }
+    const result = response ? await response.json().catch(() => ({})) : {}
+    setError(result.error || 'We could not update your details. Your enquiry was already received.')
+    setLoading(false)
+  }
+
+  if (updateToken) return <form className={styles.form} id="data-analytics-lp-enquiry" onSubmit={submitDetails}>
+    <span className={styles.formEyebrow}>OPTIONAL DETAILS</span>
+    <h2>Thanks! Help us assist you better.</h2>
+    <p>Your enquiry is received. These details are optional.</p>
     <label><span className={styles.fieldLabel}>Email <small>Optional</small></span><input name="email" autoComplete="email" type="email" maxLength={120} placeholder="Your email address" /></label>
     <div className={styles.formRow}>
-      <label><span className={styles.fieldLabel}>Current Status</span><select name="status" defaultValue=""><option value="">Select</option><option>Student</option><option>Fresher</option><option>Working Professional</option><option>Career Switcher</option><option>Other</option></select></label>
-      <label><span className={styles.fieldLabel}>Training Mode</span><select name="mode" defaultValue=""><option value="">Select</option><option>Classroom</option><option>Online</option></select></label>
+      <label><span className={styles.fieldLabel}>Current Status <small>Optional</small></span><select name="status" defaultValue=""><option value="">Select</option><option>Student</option><option>Fresher</option><option>Working Professional</option><option>Career Switcher</option><option>Other</option></select></label>
+      <label><span className={styles.fieldLabel}>Training Mode <small>Optional</small></span><select name="mode" defaultValue=""><option value="">Select</option><option>Classroom</option><option>Online</option></select></label>
     </div>
+    <button className={styles.submit} disabled={loading} type="submit">{loading ? 'Updating…' : 'Update Details'}</button>
+    <button className={styles.skip} type="button" onClick={() => window.location.assign('/thank-you/data-analytics-enquiry/')}>No thanks, continue</button>
+    {error && <p className={styles.error} role="alert">{error}</p>}
+  </form>
+
+  return <form className={styles.form} id="data-analytics-lp-enquiry" onSubmit={submitContact}>
+    <span className={styles.formEyebrow}>GET COURSE DETAILS</span>
+    <h2>Get Course Fees &amp; Next Batch Details</h2>
+    <p>Share your name and mobile number to get current fees and batch details.</p>
+    <label><span className={styles.fieldLabel}>Name <em aria-hidden="true">*</em></span><input name="name" autoComplete="name" required maxLength={80} placeholder="Your name" /></label>
+    <label><span className={styles.fieldLabel}>Mobile Number <em aria-hidden="true">*</em></span><input name="mobile" autoComplete="tel" required inputMode="tel" pattern="[0-9+() -]{8,18}" placeholder="Your mobile number" /></label>
     <input name="course" type="hidden" value="Data Analytics" />
     <input className={styles.trap} name="website" tabIndex={-1} autoComplete="off" aria-hidden="true" />
     <button className={styles.submit} disabled={loading} type="submit">{loading ? 'Sending…' : 'Get Fees & Batch Details'}</button>

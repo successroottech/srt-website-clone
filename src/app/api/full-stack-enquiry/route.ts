@@ -1,9 +1,22 @@
 import { NextRequest, NextResponse } from 'next/server'
+import { createHash, randomBytes, timingSafeEqual } from 'node:crypto'
 import nodemailer from 'nodemailer'
 import configPromise from '@payload-config'
 import { getPayload } from 'payload'
 
 const attempts = new Map<string, number>()
+const clean = (value: unknown, max = 120) => String(value || '').trim().slice(0, max)
+const tokenHash = (value: string) => createHash('sha256').update(value).digest('hex')
+
+function normalizeIndianMobile(value: unknown) {
+  const digits = String(value || '').replace(/\D/g, '')
+  const local = digits.startsWith('91') && digits.length === 12 ? digits.slice(2) : digits
+  return /^[6-9]\d{9}$/.test(local) ? `+91${local}` : null
+}
+
+function submissionValue(submissionData: { field: string; value: string }[] | null | undefined, field: string) {
+  return submissionData?.find((item) => item.field === field)?.value || ''
+}
 
 export async function POST(request: NextRequest) {
   const ip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 'unknown'
@@ -13,9 +26,8 @@ export async function POST(request: NextRequest) {
 
   const data = await request.json().catch(() => null)
   if (!data || data.website) return NextResponse.json({ error: 'Invalid submission.' }, { status: 400 })
-  const clean = (value: unknown, max = 120) => String(value || '').trim().slice(0, max)
   const name = clean(data.name, 80)
-  const mobile = clean(data.mobile, 18)
+  const mobile = normalizeIndianMobile(data.mobile)
   const email = clean(data.email)
   const status = clean(data.status, 40) || 'Not provided'
   const mode = clean(data.mode, 30) || 'Not specified'
@@ -24,7 +36,7 @@ export async function POST(request: NextRequest) {
   const courseName = isAnalytics ? 'Data Analytics' : 'Full Stack'
   const formTitle = `${courseName} Course Enquiry`
   const sourceName = `${courseName} Google Ads landing page`
-  if (!name || !/^[0-9+() -]{8,18}$/.test(mobile) || !['Data Analytics', 'Full Stack Development'].includes(clean(data.course, 40))) return NextResponse.json({ error: 'Please complete all required fields.' }, { status: 400 })
+  if (!name || !mobile || !['Data Analytics', 'Full Stack Development'].includes(clean(data.course, 40))) return NextResponse.json({ error: 'Enter your name and a valid Indian mobile number.' }, { status: 400 })
 
   // Persist the lead first. Email is only a notification and must never be the
   // single point of failure for a paid-traffic conversion.
@@ -52,6 +64,7 @@ export async function POST(request: NextRequest) {
       },
     })
   }
+  const updateToken = randomBytes(24).toString('base64url')
   await payload.create({
     collection: 'form-submissions',
     overrideAccess: true,
@@ -62,6 +75,7 @@ export async function POST(request: NextRequest) {
         { field: 'email', value: email || 'Not provided' }, { field: 'status', value: status },
         { field: 'mode', value: mode }, { field: 'batch', value: batch || 'Not Sure' },
         { field: 'source', value: sourceName },
+        { field: 'lead-update-token', value: tokenHash(updateToken) },
       ],
     },
   })
@@ -125,5 +139,40 @@ export async function POST(request: NextRequest) {
     }).catch((error) => console.error('Full Stack enquiry email notification failed:', error))
   }
   attempts.set(ip, now)
+  return NextResponse.json({ success: true, updateToken })
+}
+
+export async function PATCH(request: NextRequest) {
+  const data = await request.json().catch(() => null)
+  const updateToken = clean(data?.updateToken, 80)
+  if (!updateToken || data?.website) return NextResponse.json({ error: 'Invalid update request.' }, { status: 400 })
+
+  const payload = await getPayload({ config: configPromise })
+  const suppliedToken = tokenHash(updateToken)
+  const matches = await payload.find({
+    collection: 'form-submissions', overrideAccess: true, limit: 2,
+    where: { 'submissionData.value': { equals: suppliedToken } },
+  })
+  const submission = matches.docs.length === 1 ? matches.docs[0] : null
+  const submissionData = submission?.submissionData || []
+  const storedToken = submissionValue(submissionData, 'lead-update-token')
+  if (!submission || !storedToken || storedToken.length !== suppliedToken.length || !timingSafeEqual(Buffer.from(storedToken), Buffer.from(suppliedToken))) {
+    return NextResponse.json({ error: 'This lead update is no longer available.' }, { status: 403 })
+  }
+
+  const email = clean(data.email)
+  const status = clean(data.status, 40)
+  const mode = clean(data.mode, 30)
+  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return NextResponse.json({ error: 'Enter a valid email address.' }, { status: 400 })
+  if (!email && !status && !mode) return NextResponse.json({ error: 'Add at least one optional detail to update.' }, { status: 400 })
+
+  const replacements: Record<string, string> = {
+    email: email || submissionValue(submissionData, 'email') || 'Not provided',
+    status: status || submissionValue(submissionData, 'status') || 'Not provided',
+    mode: mode || submissionValue(submissionData, 'mode') || 'Not specified',
+    'lead-update-token': `used-${Date.now()}`,
+  }
+  const updatedData = submissionData.map((item) => replacements[item.field] === undefined ? item : { ...item, value: replacements[item.field] })
+  await payload.update({ collection: 'form-submissions', id: submission.id, overrideAccess: true, data: { submissionData: updatedData } })
   return NextResponse.json({ success: true })
 }
