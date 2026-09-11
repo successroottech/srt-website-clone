@@ -88,6 +88,7 @@ export default function FullStackAdsLandingPage() {
       <section className={styles.hero}>
         <div className={`${styles.shell} ${styles.heroGrid}`}>
           <div className={styles.heroCopy}>
+            <div className={styles.demoBanner}>FREE DEMO CLASS AVAILABLE — Book Your Slot Today</div>
             <span className={styles.eyebrow}>FULL STACK DEVELOPER TRAINING • CHENNAI</span>
             <h1>Full Stack Developer Course in Chennai with Placement Assistance</h1>
             <p className={styles.heroLead}>Become a Job-Ready Full Stack Developer with hands-on training in React.js, Node.js, Express.js &amp; MongoDB.</p>

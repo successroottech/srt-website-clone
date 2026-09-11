@@ -87,6 +87,7 @@ export default function DataAnalyticsAdsLandingPage() {
       <section className={styles.hero}>
         <div className={`${styles.shell} ${styles.heroGrid}`}>
           <div className={styles.heroCopy}>
+            <div className={styles.demoBanner}>FREE DEMO CLASS AVAILABLE — Book Your Slot Today</div>
             <span className={styles.eyebrow}>DATA ANALYTICS TRAINING • CHENNAI</span>
             <h1>Data Analytics Course in Chennai with Placement Assistance</h1>
             <p className={styles.heroLead}>Become a Job-Ready Data Analyst with hands-on training in Excel, SQL, Power BI &amp; Python.</p>

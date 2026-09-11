@@ -33,7 +33,7 @@ export function FullStackLeadActions({ compact = false, directions: showDirectio
 }
 
 export function FullStackHeroAction() {
-  return <button className={styles.heroCta} type="button" onClick={focusForm}>Get Fees &amp; Batch Details</button>
+  return <button className={styles.heroCta} type="button" onClick={focusForm}>Book Free Demo / Get Course Details</button>
 }
 
 export function FullStackLeadForm() {
@@ -111,6 +111,7 @@ export function FullStackLeadForm() {
   return <form className={styles.form} id="full-stack-lp-enquiry" onSubmit={submitContact}>
     <span className={styles.formEyebrow}>GET COURSE DETAILS</span>
     <h2>Get Course Fees &amp; Next Batch Details</h2>
+    <div className={styles.formTrust}>Free Demo Available • Online &amp; Classroom</div>
     <p>Share your name and mobile number to get current fees and batch details.</p>
     <label><span className={styles.fieldLabel}>Name <em aria-hidden="true">*</em></span><input name="name" autoComplete="name" required maxLength={80} placeholder="Your name" /></label>
     <label><span className={styles.fieldLabel}>Mobile Number <em aria-hidden="true">*</em></span><input name="mobile" autoComplete="tel" required inputMode="tel" pattern="[0-9+() -]{8,18}" placeholder="Your mobile number" /></label>
