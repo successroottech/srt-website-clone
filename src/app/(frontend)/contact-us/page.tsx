@@ -11,6 +11,7 @@ import {
   Phone,
 } from 'lucide-react'
 import { WhatsAppIcon } from '@/components/icons/WhatsAppIcon'
+import { LocationMap } from '@/components/LocationMap'
 import styles from './contact.module.css'
 
 const phone = '+918939069135'
@@ -173,6 +174,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
+      <LocationMap />
       <section className={styles.final}>
         <div className="container">
           <h2>Ready to Speak With Our Team?</h2>

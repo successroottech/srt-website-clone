@@ -13,6 +13,7 @@ import {
 } from 'lucide-react'
 
 import { DataAnalyticsHeroAction, DataAnalyticsLeadActions, DataAnalyticsLeadForm } from './DataAnalyticsLeadForm'
+import { LocationMap } from '@/components/LocationMap'
 import styles from './page.module.css'
 
 const canonical = 'https://successroottech.com/courses/data-analytics-course-chennai/'
@@ -131,6 +132,8 @@ export default function DataAnalyticsAdsLandingPage() {
           <DataAnalyticsLeadActions />
         </div>
       </section>
+
+      <LocationMap />
 
       <section className={`${styles.section} ${styles.alt}`}>
         <div className={styles.shell}>

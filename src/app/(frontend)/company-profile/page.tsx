@@ -20,6 +20,7 @@ import {
 } from 'lucide-react'
 
 import { PrintProfileButton } from '@/components/PrintProfileButton'
+import { LocationMap } from '@/components/LocationMap'
 
 import styles from './page.module.css'
 
@@ -186,7 +187,7 @@ const organizationSchema = {
   telephone: '+91-89390-69135',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: 'No. 9/5, Station Road, West Mambalam',
+    streetAddress: 'Old No. 8/1, New No. 15/1, First Floor, Rajaji Street, West Mambalam',
     addressLocality: 'Chennai',
     addressRegion: 'Tamil Nadu',
     postalCode: '600033',
@@ -382,6 +383,7 @@ export default function CompanyProfilePage() {
         </div>
       </section>
 
+      <LocationMap />
       <section className={styles.contactSection}>
         <div className={`container ${styles.contactCard}`}>
           <div>
@@ -392,7 +394,7 @@ export default function CompanyProfilePage() {
           <address>
             <a href="tel:+918939069135"><Phone size={19} /><span><small>Call or WhatsApp</small>+91 89390 69135</span></a>
             <a href="mailto:contact@successroottech.com"><Mail size={19} /><span><small>Email</small>contact@successroottech.com</span></a>
-            <div><MapPin size={19} /><span><small>Office</small>No. 9/5, Station Road, West Mambalam,<br />Chennai – 600033, Tamil Nadu</span></div>
+            <div><MapPin size={19} /><span><small>Office</small>Old No. 8/1, New No. 15/1, First Floor,<br />Rajaji Street, West Mambalam,<br />Chennai – 600033, Tamil Nadu</span></div>
           </address>
           <div className={styles.contactActions}>
             <a href="https://wa.me/918939069135">Start a Conversation <ArrowRight size={18} /></a>

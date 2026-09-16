@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Braces, BriefcaseBusiness, Check, CloudUpload, Code2, Database, GitBranch, Laptop, MapPin, Network, Server, Users } from 'lucide-react'
 
 import { FullStackHeroAction, FullStackLeadActions, FullStackLeadForm } from './FullStackLeadForm'
+import { LocationMap } from '@/components/LocationMap'
 import styles from './page.module.css'
 
 const canonical = 'https://successroottech.com/courses/full-stack-developer-course-chennai/'
@@ -132,6 +133,8 @@ export default function FullStackAdsLandingPage() {
           <FullStackLeadActions />
         </div>
       </section>
+
+      <LocationMap />
 
       <section className={`${styles.section} ${styles.alt}`}>
         <div className={styles.shell}>

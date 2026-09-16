@@ -7,6 +7,7 @@ import {
 } from 'lucide-react'
 
 import styles from './page.module.css'
+import { LocationMap } from '@/components/LocationMap'
 
 const canonical = 'https://successroottech.com/about-us/'
 
@@ -185,6 +186,7 @@ export default function AboutPage() {
         </div>
       </section>
 
+      <LocationMap />
       <section className={styles.finalCta}>
         <div className="container"><div><span className={styles.eyebrow}>Start a Conversation</span><h2>Let&apos;s Build the Next Opportunity Together</h2><p>Whether you are building your career, hiring technology talent or planning your next digital project, Success Root Technologies is ready to support you.</p></div><div className={styles.finalActions}><Link className={styles.primaryButton} href="/services/">Explore Services <ArrowRight size={18} /></Link><Link className={styles.lightButton} href="/contact-us/">Contact SRT <Handshake size={18} /></Link></div></div>
       </section>
