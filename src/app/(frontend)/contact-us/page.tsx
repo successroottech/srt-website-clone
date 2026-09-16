@@ -174,7 +174,7 @@ export default function ContactPage() {
           </div>
         </div>
       </section>
-      <LocationMap />
+      <LocationMap enableDirectionsPlanner />
       <section className={styles.final}>
         <div className="container">
           <h2>Ready to Speak With Our Team?</h2>

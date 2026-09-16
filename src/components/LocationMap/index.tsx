@@ -1,4 +1,8 @@
+'use client'
+
 import { MapPin, MessageCircle, Navigation, Phone } from 'lucide-react'
+import { useMemo, useState } from 'react'
+import type { FormEvent } from 'react'
 
 import styles from './LocationMap.module.css'
 
@@ -13,7 +17,42 @@ const mapEmbed = mapsEmbedKey
   ? `https://www.google.com/maps/embed/v1/place?key=${encodeURIComponent(mapsEmbedKey)}&q=${encodeURIComponent(locationQuery)}`
   : null
 
-export function LocationMap() {
+type TravelMode = 'driving' | 'transit' | 'walking'
+
+function buildDirectionsEmbed(origin: string, mode: TravelMode) {
+  if (!mapsEmbedKey || !origin) return null
+  const params = new URLSearchParams({
+    key: mapsEmbedKey,
+    origin,
+    destination: locationQuery,
+    mode,
+    units: 'metric',
+  })
+  return `https://www.google.com/maps/embed/v1/directions?${params.toString()}`
+}
+
+function buildGoogleMapsUrl(origin: string, mode: TravelMode) {
+  const params = new URLSearchParams({ api: '1', destination: locationQuery, travelmode: mode })
+  if (origin) params.set('origin', origin)
+  return `https://www.google.com/maps/dir/?${params.toString()}`
+}
+
+export function LocationMap({ enableDirectionsPlanner = false }: { enableDirectionsPlanner?: boolean }) {
+  const [startingLocation, setStartingLocation] = useState('')
+  const [activeOrigin, setActiveOrigin] = useState('')
+  const [travelMode, setTravelMode] = useState<TravelMode>('driving')
+  const activeMap = useMemo(
+    () => buildDirectionsEmbed(activeOrigin, travelMode) || mapEmbed,
+    [activeOrigin, travelMode],
+  )
+  const openMapsUrl = buildGoogleMapsUrl(startingLocation.trim(), travelMode)
+
+  function showDirections(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+    const origin = startingLocation.trim()
+    if (origin) setActiveOrigin(origin)
+  }
+
   return (
     <section className={styles.section} aria-labelledby="srt-location-title">
       <div className={styles.shell}>
@@ -31,14 +70,43 @@ export function LocationMap() {
             <a href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={18} aria-hidden="true" /> WhatsApp</a>
             <a href={directions} target="_blank" rel="noreferrer"><Navigation size={18} aria-hidden="true" /> Get Directions</a>
           </div>
+          {enableDirectionsPlanner && (
+            <form className={styles.planner} onSubmit={showDirections}>
+              <h3>Plan Your Visit</h3>
+              <p>Enter your starting location to see directions, distance and estimated travel time to Success Root Technologies, West Mambalam.</p>
+              <label htmlFor="srt-starting-location">Starting location</label>
+              <input
+                id="srt-starting-location"
+                value={startingLocation}
+                onChange={(event) => setStartingLocation(event.target.value)}
+                placeholder="Enter area, landmark or address"
+                autoComplete="street-address"
+                required
+              />
+              <fieldset>
+                <legend>Travel mode</legend>
+                <div className={styles.modes}>
+                  {(['driving', 'transit', 'walking'] as const).map((mode) => (
+                    <button key={mode} type="button" aria-pressed={travelMode === mode} onClick={() => setTravelMode(mode)}>
+                      {mode[0].toUpperCase() + mode.slice(1)}
+                    </button>
+                  ))}
+                </div>
+              </fieldset>
+              <div className={styles.plannerActions}>
+                <button type="submit">Show Directions</button>
+                <a href={openMapsUrl} target="_blank" rel="noreferrer">Open in Google Maps</a>
+              </div>
+            </form>
+          )}
         </div>
-        {mapEmbed ? (
+        {activeMap ? (
           <div className={styles.mapWrap}>
             <iframe
-              title="Success Root Technologies location in West Mambalam, Chennai"
-              src={mapEmbed}
+              title={activeOrigin ? 'Directions to Success Root Technologies' : 'Success Root Technologies location in West Mambalam, Chennai'}
+              src={activeMap}
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
+              referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
             />
           </div>
