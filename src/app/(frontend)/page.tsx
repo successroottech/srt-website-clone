@@ -254,7 +254,7 @@ export default async function HomePage() {
                   ★★★★★
                 </span>
               </b>
-              <small>Based on 74 reviews</small>
+              <small>Based on 85 reviews</small>
             </span>
           </div>
         </div>
@@ -670,7 +670,7 @@ export default async function HomePage() {
                       <Star fill="currentColor" key={star} size={17} />
                     ))}
                   </span>
-                  <small>Based on 74 public Google reviews · Verified August 2026</small>
+                  <small>Based on 85 public Google reviews · Verified September 2026</small>
                 </span>
               </div>
               <p>

@@ -162,7 +162,7 @@ export default function DataAnalyticsAdsLandingPage() {
 
       <section className={`${styles.section} ${styles.reviews}`}>
         <div className={styles.shell}>
-          <div className={styles.reviewTop}><div className={styles.sectionHeading}><span>VERIFIED GOOGLE REVIEWS</span><h2>What Our Learners Say</h2></div><a href="https://www.google.com/search?q=Success+Root+Technologies+West+Mambalam+Chennai+reviews" target="_blank" rel="noreferrer"><strong>4.8/5</strong><span>★★★★★</span><small>Based on 74 Google reviews · verified August 2026</small></a></div>
+          <div className={styles.reviewTop}><div className={styles.sectionHeading}><span>VERIFIED GOOGLE REVIEWS</span><h2>What Our Learners Say</h2></div><a href="https://www.google.com/search?q=Success+Root+Technologies+West+Mambalam+Chennai+reviews" target="_blank" rel="noreferrer"><strong>4.8/5</strong><span>★★★★★</span><small>Based on 85 Google reviews · verified September 2026</small></a></div>
           <div className={styles.reviewGrid}>{reviews.map(([name, text]) => <article key={name}><div aria-label="5 out of 5 stars">★★★★★</div><blockquote>“{text}”</blockquote><strong>{name}</strong><small>Google review · 2026</small></article>)}</div>
         </div>
       </section>

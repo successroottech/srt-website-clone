@@ -151,7 +151,7 @@ export default function ITCoursesChennaiPage() {
             <b>
               Google rating <span className="google-stars" aria-label="5 stars">★★★★★</span>
             </b>
-            <small>Based on 74 reviews</small>
+            <small>Based on 85 reviews</small>
           </span>
         </div>
       </section>

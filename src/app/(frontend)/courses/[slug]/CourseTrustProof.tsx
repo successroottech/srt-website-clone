@@ -95,7 +95,7 @@ export function CourseTrustProof({ course }: { course: keyof typeof reviews }) {
             </div>
             <a className={styles.ratingBadge} href={googleReviewsUrl} target="_blank" rel="noreferrer" aria-label="View Success Root Technologies reviews on Google">
               <span><strong>4.8</strong> <span className={styles.stars} aria-label="4.8 out of 5 stars">★★★★★</span></span>
-              <small>Based on 74 Google reviews</small>
+              <small>Based on 85 Google reviews</small>
               <em>Verified August 2026</em>
             </a>
           </div>
